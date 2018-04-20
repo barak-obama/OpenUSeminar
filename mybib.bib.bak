@@ -1,0 +1,33 @@
+%% This BibTeX bibliography file was created using BibDesk.
+%% http://bibdesk.sourceforge.net/
+
+%% Created for Barak Obama at 2018-01-16 15:48:46 +0200 
+
+
+%% Saved with string encoding Hebrew (ISO 8859-8) 
+
+
+@comment{jabref-meta: databaseType:biblatex;}
+
+
+
+@book{kreyszig1989introductory,
+	Author = {Kreyszig, Erwin},
+	Publisher = {wiley New York},
+	Title = {Introductory functional analysis with applications},
+	Volume = {1},
+	Year = {1989}}
+
+@book{functionalAnalysisOpenUheb,
+	Author = {אלי לוין וודים גרינשטיין},
+	Date-Modified = {2018-01-07 18:54:28 +0000},
+	Publisher = {בית ההוצאה לאור של האוניברסיטה הפתוחה},
+	Title = {מבוא לאנליזה פונקציונלית},
+	Year = {9002}}
+
+@book{odeOpenUheb,
+	Author = {ציפי ברגר},
+	Date-Modified = {2018-01-16 13:48:46 +0000},
+	Publisher = {בית ההוצאה לאור של האוניברסיטה הפתוחה},
+	Title = {משוואות דיפרנציאליות רגילות},
+	Year = {2005}}

@@ -1,0 +1,1055 @@
+%% LyX 2.2.3 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english,hebrew]{article}
+\usepackage[T1]{fontenc}
+\usepackage[8859-8]{inputenc}
+\setlength{\parindent}{0bp}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+
+\makeatletter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\usepackage{theorem}
+\theorembodyfont{\upshape}
+\newtheorem{theorem}{\R{משפט}}[section]
+\AtBeginDocument{\make@lr\thetheorem}
+
+% The following chunk fixes export with XeTeX.
+% It is needed because polyglossia is used by default
+% and \make@lr is only defined by babel.
+\@ifundefined{make@lr}
+{\def\make@lr#1{\begingroup
+    \toks@=\expandafter{#1}%
+    \edef\x{\endgroup
+  \def\noexpand#1{\noexpand\@number{\the\toks@}}}%
+  \x}}{\relax}
+\newenvironment{proof}%
+{\R{\textbf{הוכחה:}}}%
+{\hfill\rule{2mm}{2mm}\par\vspace{2mm}}
+\newtheorem{remark}[theorem]{\R{הערה}}
+\newtheorem{claim}[theorem]{\R{טענה}}
+\newtheorem{definition}[theorem]{\R{הגדרה}}
+\newtheorem{lemma}[theorem]{\R{למה}}
+\newtheorem{corollary}[theorem]{\R{מסקנה}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+\usepackage{commath}
+\usepackage{tikz} 
+\usepackage{subfigure}
+\usepackage{xifthen}
+
+
+
+\let\mybibitem\bibitem
+
+\renewcommand{\bibitem}[1]{\ifthenelse{\isin{heb}{#1}}{\selectlanguage{hebrew}\mybibitem{#1}}{\selectlanguage{english}\mybibitem{#1}}}
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\tableofcontents{}
+
+\section*{מבוא}
+
+\noindent תורת הקירובים עוסקת בקירוב של פונקציות מסובכות בעזרת פונקציות
+פשוטות יותר. לרוב השימוש יהיה לקרב פונקציות רציפות )שהתנהגותן הכללית
+מסובכת יחסית( בעזרת פולינומים )שהם פונקציות פשוטות(. בתורת הקירובים
+עוסקים כבר בחשבון אינפיניטסימלי בסיסי, בכל הנוגע לפיתוחי טיילור של
+פונקציה. פיתוח טיילור ממעלה \L{$n$} של פונקציה הוא פולינום ממעלה
+\L{$n$} הנועד לקרב את הפונקציה המיועדת. פיתוחי טיילור נוחים מאוד,
+בהיותם קלים לפיתוח, ובזכות העובדה שניתן להעריך את השיגאה שלהם מהפונקציה,
+אך הם לא בהכרח הקירוב הפולינומיאלי הטוב ביותר. בעבודה נעסוק בקירובים
+של פולינומים בעזרת פולינומים אחרים, ממעלה נמוכה יותר, ונמצא את הקירוב
+הטוב ביותר האפשרי שלהם )תחת נורמת המקסימום(. זאת נעשה בפרק \L{\ref{sec:Chebyshev}}.
+
+\noindent בפרקים \L{\ref{sec:bestAprox}} עד \L{\ref{sec:uniqu}}
+נעסוק בבעיה תיאורטית יותר, והיא בעיית הקירוב במרחבים נומריים כלליים.
+בפרק \L{\ref{sec:existence}} נבדוק את הקיום של קירובים במרחבים נומריים.
+פרק \L{\ref{sec:uniqu}} דן ביחידות של קירובים.
+
+בפרק \L{\ref{sec:uniformAprox}} נעסוק בקירוב במרחבי פונקציות רציפות
+)וממשיות(, מה שיאפשר את הדיון של קירוב פונקציות על ידי פולינומים בפרק
+\L{\ref{sec:Chebyshev}}.
+
+העבודה מתבססת על הספר \L{$\text{Introductory functional analysis with applications}$}
+של \L{$\text{Kreyszig}$} )\cite{kreyszig1989introductory}(, וממשיכה
+הנושאים בהם עסקו ספרי הקורס \char`\"{}מבוא לאנליזה פונקציונלית\char`\"{}
+באוניברסיטה הפתוחה )\cite{functionalAnalysisOpenUheb}(.
+
+\section*{סימונים}
+
+בהמשך נשתמש בסימונים הבאים:
+
+\L{$C\left[a,b\right]$} מרחב \textbf{הפונקציות הממשיות} מהקטע \L{$\left[a,b\right]$},
+יחד על נורמת המקסימום. זהו מרחב ממשי. המשתנה של פונקציות אלו הוא \L{$t$}.
+
+\L{$x,y,z$} ישמשו כסימון לווקטורים במרחב אותו נחקור, ובפרט לפונקציות
+ב \L{$C\left[a,b\right]$}.
+
+\L{$Y_{n}$} תת מרחב הפולינומים ממעלה עד \L{$n$} )כולל( בתוך \L{$C\left[a,b\right]$}.
+זהו מרחב \L{$n+1$} מימדי.
+
+\pagebreak{}
+
+\section{הקירוב הטוב ביותר\label{sec:bestAprox}}
+
+\noindent בהינתן \L{$Y$} תת מרחב של המרחב הנורמי \L{$X$} ו\L{$x\in X$}
+אנו מעוניינים לדעת כמה \char`\"{}טוב\char`\"{} אפשר לקרב \L{$x$}
+על ידי איברים מ\L{$Y$}, כלומר למצוא \L{$y\in Y$} כך ש \L{$\Vert x-y\Vert$}
+קטן ככל האפשר. נזכר בהגדרה של מרחק של נקודה מקבוצה:\L{
+\[
+\delta:=d(x,Y):=\underset{y\in Y}{\inf}\Vert x-y\Vert
+\]
+}מהגדרת האינפמום נובע שלכל \L{$d>d(x,Y)$} קיים \L{$y\in Y$} כך ש
+\L{$\Vert x-y\Vert<d$}. אנו מעוניינים לדעת אם קיים ווקטור \L{$y_{0}\in Y$}
+המקיים:\L{
+\[
+\Vert x-y_{0}\Vert=\delta
+\]
+}לווקטור כזה נקרא \textbf{הקירוב הטוב ביותר }של \L{$x$} מתוך \L{$Y$}.
+
+\noindent בנוסף אנו נרצה לדעת האם הקירוב הטור ביותר הוא יחיד.
+
+במרחבי מכפלה פנימית הבעיה הזאת פתורה. יהי \L{$E$} מרחב מכפלה פנימית.
+אם \L{$Y$} תת מרחב של \L{$E$}, לפי \cite[משפט 41.1]{functionalAnalysisOpenUheb}
+אנחנו למדים שלכל \L{$x\in E$} הקירוב, אם קיים, הוא יחיד, ולפי \cite[משפט 51.1]{functionalAnalysisOpenUheb}
+אם \L{$Y$} ממימד סופי אז אנחנו יודעים למצוא את הקירוב. מכאן שבמרחב
+הילברט אכן יש קירוב טוב ביותר והוא יחיד. כלומר בכל המקרים האלו הקירוב
+הטוב ביותר \L{$y\in Y$} של \L{$x\in E$} מקיים \L{$x-y\bot Y$},
+כלומר \L{$y=Px$} כאשר \L{$P$} היא ההטלה האורתוגונלית על \L{$Y$}
+)מכיוון ש \L{$x=m+Px$} \L{$m\in Y^{\bot}$} לכן \L{$x-Px\bot Y$}(.
+\begin{theorem}
+\noindent \textbf{יחידות וקיום קירוב טוב יותר במרחב הילברט}
+
+\noindent יהי \L{$H$} מרחב הילברט, \L{$Y$} תת מרחב סגור )לא בהכרח
+סוף מימדי( ו\L{$x\in X$}. אז קיים קירוב טוב ביותר של \L{$x$} מתוך
+\L{$Y$} והוא יחיד )והוא \L{$Px$} כאשר \L{$P$} היא ההטלה האורתוגונלית
+על \L{$Y$}(
+\end{theorem}
+\begin{proof}
+\noindent כל תת מרחב הוא קמור, לכן לפי \cite[משפט 61.1]{functionalAnalysisOpenUheb}
+לכל \L{$x\in H$} קיים קירוב טוב יותר של \L{$x$} מתוך \L{$Y$}, והוא
+יחיד. נסמנו \L{$y$}.
+
+\noindent לפי {]}{\beginL 2\endL}, משפט {\beginL 1.14\endL}{[} \L{$x-y\perp Y$}
+לכן \L{$x-y\in Y^{\perp}$}. אם נסמן \L{$x=n+m$} כאשר \L{$n\in Y,m\in Y^{\perp}$}
+אז מתקיים \L{$P(x-y)=0$} )כי \L{$x-y\in Y^{\perp}$}( ו\L{$n-y\in Y$}
+מכיוון ש\L{$y\in Y$} לכן\L{
+\[
+0=P(x-y)=P(n+m-y)=P\left((n-y)+m\right)=n-y=Px-y\Rightarrow y=Px
+\]
+}
+\end{proof}
+
+\section{קיום\label{sec:existence}}
+
+\noindent נעבור עתה לדיון במרחבים נורמיים כלליים )ולא מרחבי הילברט(,
+ונגלה שכאן המצב מסובך יותר.
+
+\noindent בשימושים רבים המרחב \L{$Y$} שאיתו נרצה לקרב יהיה ממימד
+סופי, במקרה פשוט יחסית זה, יש לנו את המשפט הבא
+\begin{theorem}
+\noindent \textbf{\large{}\label{thm:best_aprox_existence} - קיום
+קירוב טוב ביותר}{\large \par}
+\end{theorem}
+\noindent יהי \L{$X$} מרחב נורמי ו \L{$Y$} תת מרחב ממימד סופי שלו.
+במקרה זה, לכל \L{$x\in X$} יש קירוב טוב ביותר מתוך \L{$Y$}.
+\begin{proof}
+\noindent יהי \L{$x\in X$}, נוכיח שקיים לו קירוב טוב ביותר מ\L{$Y$}.
+נתבונן בכדור הסגור הבא\L{
+\[
+B=\left\{ y\in Y\big|\Vert y\Vert\leq2\Vert x\Vert\right\} 
+\]
+}
+
+\noindent בהכרח מתקיים \L{$0\in B$} לכן \L{
+\[
+d(x,B)=\underset{y\in B}{\inf}\Vert x-y\Vert\leq\Vert x-0\Vert=\Vert x\Vert
+\]
+}
+
+\noindent מצד שני, אם \L{$y\not\in B$} אז מתקיים \L{$\Vert y\Vert>2\Vert x\Vert$}
+ולפי אי שוויון המשולש אנחנו מקבלים\L{
+\begin{equation}
+\Vert x-y\Vert\geq\left|\left\Vert y\right\Vert -\left\Vert x\right\Vert \right|>\Vert x\Vert\geq d(x,B)\label{eq:strongInEquality}
+\end{equation}
+}
+
+\noindent לכן, לכל \L{$y\in Y\backslash B$} מתקיים \L{$d(x,B)<\Vert x-y\Vert$}.
+לכן הקירוב הטוב ביותר יכול להתקבל רק בתוך \L{$B$}. נבדוק אם אכן קיים
+כזה ב \L{$B$}.
+
+\noindent \L{$B$} חסום וסגור. לכן הפונקציה \L{$y\mapsto\Vert x-y\Vert$}
+כאשר \L{$y\in B$} מקבלת מינימום ב\L{$B$} )ההוכחה זהה להוכחת \cite[משפט 8.1]{functionalAnalysisOpenUheb}.
+ניתן להשתמש בהוכחה זאת בזכות \cite[משפט 8.6ב]{functionalAnalysisOpenUheb}
+ומכך שנורמה היא רציפה(. נסמן את נקודת המינימום ב \L{$y_{0}$}. בהכרך
+מתקיים \L{$\Vert x-y_{0}\Vert=d(x,B)=d(x,Y)$} , לכן \L{$y_{0}$}
+היא הקירוב הטוב ביותר של \L{$x$} מתוך \L{$Y$}.
+\end{proof}
+\begin{remark}
+\noindent הדרישה לסוף מימדיות היא הכרחית. לדוגמא, ניקח \L{$X=C(\mathbb{R})$}
+מרחב הפונקציות הרציפות ב\L{$\mathbb{R}$} ו\L{$Y=\mathbb{R}[t]$}
+תת המרחב של כל הפולינומים. \L{$Y$} צפוף ב\L{$X$} )תוצאה מיידית של
+משפט ויישטראס - \cite[משפט 02.8]{odeOpenUheb}( אבל \L{$Y\neq X$}
+לכן קיים \L{$f\in X\backslash Y$} כך ש \L{$d(f,Y)=0$} אבל אם \L{$f\in X\backslash Y$}
+לא קיים \L{$g\in Y$} כך ש \L{$d(f,g)=0$}. לדוגמא \L{$f\left(t\right)=sin(t)\in X\backslash Y$}.
+\end{remark}
+
+\section{יחידות\label{sec:uniqu}}
+
+\noindent בצורה טבעית עולה השאלה האם הקירוב הטוב ביותר הוא יחד. בצורה
+כללית, התשובה היא שלילית, ראו \cite[שאלה 6, פרק 6]{functionalAnalysisOpenUheb}.
+
+\noindent 
+\begin{claim}
+\noindent \label{claim:best_aprox_convex}יהי \L{$X$} מרחב נורמי
+ו \L{$x\in X$}, \L{$Y\subseteq X$} תת מרחב של \L{$X$}. נסמן ב\L{$M$}
+את קבוצת הקירובים הטובים ביותר של \L{$x$} מתוך \L{$Y$}. אז \L{$M$}
+קבוצה קמורה.
+\end{claim}
+\begin{proof}
+\noindent לכל \L{$y,z\in X$} נסמן את הקטע בין \L{$z$} ל\L{$y$}
+ב \L{$[z,y]=\{tz+(1-t)y:0\leq t\leq1\}$}. נרצה להוכיח שלכל \L{$y,z\in M$}
+\L{$[z,y]\subseteq M$}, ואז נסיק, לפי הגדרה, כי \L{$M$} קמורה.
+
+\noindent \L{$Y$} מרחב ווקטורי לכן \L{$[z,y]\subseteq Y$} לכן לכל
+\L{$w\in[z,y]$} מתקיים \L{$\Vert x-w\Vert\geq\delta$}, כאשר \L{$\delta=d(x,Y)$}.
+
+\noindent בנוסף, מתקיים\L{
+\begin{align*}
+\Vert x-w\Vert & =\norm{(t+1-t)x-tz-(1-t)y}\\
+ & =\norm{t(x-z)+(1-t)(x-y)}\\
+ & \leq t\norm{x-z}+(1-t)\norm{x-y}\\
+ & =t\delta+(1-t)\delta=\delta
+\end{align*}
+}בשוויון לפני האחרון בכך ש\L{$z,y\in M$} כלומר \L{$\Vert x-z\Vert=\Vert z-y\Vert=\delta$},
+הראינו שמתקיים \L{$\norm{x-w}\leq\delta$} וגם \L{$\norm{x-w}\geq\delta$}
+כלומר \L{$\norm{x-w}=\delta$}, לכן \L{$w\in M$}. הוכחנו שאם לכל
+\L{$y,z\in M$} מתקיים \L{$[z,y]\subseteq M$}, לכן \L{$M$} קמורה.
+\end{proof}
+\noindent אם \L{$y\in Y$} הוא קירוב טוב ביותר של \L{$x$} אז הווקטור
+\L{$v=\frac{x-y}{\delta}$} הוא וקטור יחידה. אם נסמן \L{$\phi:y\mapsto\frac{x-y}{\delta}$}
+אז \L{$\phi(M)\subseteq B(0,1)$}, כאשר \L{$M$} היא קבוצת הקירוב
+הטובים ביותר של \L{$x$}, כמו במשפט \L{\ref{claim:best_aprox_convex}},
+ו\L{$B(0,1)$} הוא כדור היחידה. נניח שקיימים \L{$y,z\in Y$} שונים
+שהם קירובים טובים ביותר של \L{$x$}. אז התמונה של הקטע \L{$\left[z,y\right]$}
+)המוכל ב\L{$M$}( תחת \L{$\phi$} היא הקבוצה \L{
+\begin{align*}
+\phi\left(\left[z,y\right]\right) & =\left\{ \phi\left(tz+\left(1-t\right)\right)y:t\in\left[0,1\right]\right\} =\\
+ & =\left\{ t\frac{x-z}{\delta}+\left(1-t\right)\frac{x-y}{\delta}:t\in\left[0,1\right]\right\} =\left[\frac{x-z}{\delta},\frac{x-y}{\delta}\right]
+\end{align*}
+} , המוכלת \L{$B(0,1)$}. לכן ספירת היחידה מכילה קטע.
+
+\noindent אם נדרוש שספירת היחידה לא תכיל אף קטע נקבל שאין שני קירובים
+שונים )כי אז היה קטע בניהם שמוכל ב\L{$M$}, לכן היה קטע שמוכל בספירת
+היחידה(, כלומר אם קיים קירוב הוא יחיד.
+
+\noindent נדרוש תנאי מעט חזק יותר שגורר שספירת היחידה לא מכילה אף
+קטע.
+\begin{definition}
+\noindent מרחב נורמי \L{$X$} ייקרא \textbf{קמור לחלוטין} אם לכל \L{$x,y\in X$}
+\L{$(x\neq y)$} המקיימים \L{$\Vert x\Vert=\Vert y\Vert=1$} ולכל
+\L{$0<t<1$} מתקיים \L{$\Vert tx+(1-t)y\Vert<1$} .
+\end{definition}
+\begin{remark}
+\noindent בסימוני ההגדרה תמיד יתקיים \L{$\Vert tx+(1-t)y\Vert\leq t\Vert x\Vert+(1-t)\Vert y\Vert=1$}.
+במרחב קמור לחלוטין לא ייתכן שוויון.
+\end{remark}
+\noindent המשפט הבא נותן הגדרה שקולה )ונפוצה יותר( לאותו מושג
+\begin{theorem}
+\noindent מרחב נורמי \L{$X$} הוא קמור לחלוטין אמ\char`\"{}מ לכל \L{$x,y\in X$}
+\L{$x\neq y$} המקיימים \L{$\Vert x\Vert=\Vert y\Vert=1$} אז \L{$\Vert x+y\Vert<2$}.
+%
+\end{theorem}
+\begin{proof}
+\noindent  
+
+\noindent \uline{כיוון ראשון:} \L{$X$} קמור לחלוטי \L{$\Leftarrow$}
+\L{$\Vert x+y\Vert<2$} לכל \L{$x$} ו\L{$y$} המקיימים \L{$x\neq y$}
+ו \L{$\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$}\\
+\\
+יהי \L{$0<t<1$}\L{
+\begin{align*}
+\Vert x+y\Vert & =\Vert tx+(1-t)x+ty+(1-t)y\Vert=\\
+ & =\Vert tx+(1-t)y+ty+(1-t)x\Vert\leq\\
+ & \leq\Vert tx+(1-t)y\Vert+\Vert ty+(1-t)y\Vert<\\
+ & <1+1=2
+\end{align*}
+}\uline{כיוון שני:} \L{$\Vert x+y\Vert<2$} לכל \L{$x$} ו\L{$y$}
+המקיימים \L{$x\neq y$} ו \L{$\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$}
+\L{$\Leftarrow$} \L{$X$} קמור לחלוטין\\
+\\
+נוכיח שאם \L{$X$} לא קמור לחלוטין אז קיימים \L{$x,y\in X$} כנדרש
+המקיימים \L{$x\neq y$} ו \L{$\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$}
+ו- \L{$\Vert x+y\Vert=2$}.\\
+יהיו \L{$x,y\in X$} שונים כך ש \L{$\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$}.
+\L{$X$} לא קמור לחלוטין לכן קיים \L{$z\in(x,y)=\{tx+(1-t)y:0<t<1\}$}
+כך ש\L{$\Vert z\Vert=1$}.
+
+\noindent נוכיח ש \L{$[x,y]\subseteq D(0,1)=\{z\in X|\left\Vert z\right\Vert =1\}$}.\\
+נניח קיים \L{$x_{0}\in(x,y)$} כך ש \L{$\Vert x_{0}\Vert<1$} אז לכל
+\L{
+\[
+u\in(x,x_{0})=\{tx+(1-t)x_{0}:0<t<1\}
+\]
+} מתקיים \L{
+\[
+\Vert u\Vert=\Vert tx+(1-t)x_{0}\Vert\leq t\Vert x\Vert+(1-t)\Vert x_{0}\Vert<t+1-t=1
+\]
+}באותו אופן נוכיח שלכל \L{$u\in(x_{0},y)$} מתקיים \L{$\Vert u\Vert<1$}.\\
+לכן לכל \L{$u\in(x,y)$} מתקיים \L{$\Vert u\Vert<1$} בפרט גם \L{$\Vert z\Vert<1$},
+בסתירה לכך ש\L{$\Vert z\Vert=1$}. לכן \L{$[x,y]\subseteq B(0,1)$}.
+לבסוף\\
+\L{
+\[
+\Vert x+y\Vert=2\norm{\frac{x+y}{2}}=2\norm{\frac{x}{2}+\frac{y}{2}}=2\times1=2
+\]
+}
+\end{proof}
+\noindent כתוצאה מיידית מהדיון אנחנו מקבלים את המשפט הבא
+\begin{theorem}
+\noindent \textbf{\label{thm:BestApproxUnique}משפט יחידות הקירוב
+הטוב ביותר}
+
+\noindent במרחב נורמי קמור לחלוטין \L{$X$} לכל \L{$x\in X$} קיים
+לכל היותר קירוב טוב ביותר אחד, לכל תת מרחב \L{$Y\subseteq X$}.
+\end{theorem}
+\begin{proof}
+\noindent אם היו קיימים שני קירובים טובים ביותר \L{$y_{1},y_{2}\in Y$}
+שונים אז קבוצת הקירובים הטובים ביותר \L{$M$} מכילה קטע ולכן, כפי
+שהוסבר קודם, גם ספירת היחידה מכילה קטע, בסתירה לכך ש\L{$X$} קמור
+לחלוטין. לכן יש לכל היותר קירוב טוב ביותר אחד.
+\end{proof}
+\noindent שני מקרים חשובים הם המקרים בהם \L{$X$} מרחב מכפלה פנימית
+וכאשר \L{$X=C[a,b]$}
+\begin{lemma}
+\noindent \label{lem:strictConvexity}מתקיים:
+\end{lemma}
+\begin{enumerate}
+\item כל מרחב מכפלה פנימית הוא קמור לחלוטין
+\item \L{$C[a,b]$} )עם נורמת המקסימום( לא קמור לחלוטין.
+\end{enumerate}
+\begin{proof}
+\noindent 
+\end{proof}
+\begin{enumerate}
+\item לפי אי שוויון המקבילית \cite[פרק 1 נוסחא 3]{functionalAnalysisOpenUheb}
+לכל \L{$x\neq y$} מנורמה {\beginL 1\endL} מתקיים\L{
+\begin{align*}
+\Vert x+y\Vert^{2} & =2\left(\Vert x\Vert^{2}+\Vert y\Vert^{2}\right)-\Vert x-y\Vert^{2}=\\
+ & =4-\left\Vert x-y\right\Vert ^{2}<4
+\end{align*}
+}לכן \L{
+\[
+\Vert x+y\Vert<2
+\]
+}
+\item ניקח\L{
+\[
+y_{1}(x)=1\quad\quad y_{2}(x)=\frac{x-a}{b-a}
+\]
+}אז מתקיים \L{
+\[
+\Vert y_{1}\Vert=1\quad\quad\Vert y_{2}\Vert=1
+\]
+}בבירור \L{$y_{1}\neq y_{2}$} וגם מתקיים )מכיוון ש\L{$y_{2}$} עולה(
+\L{
+\[
+\Vert y_{1}+y_{2}\Vert=\underset{x\in[a,b]}{\max}\left|1+\frac{x-a}{b-a}\right|=1+\frac{b-a}{b-a}=2
+\]
+}לכן \L{$C[a,b]$} לא כמור לחלוטין.
+\end{enumerate}
+\noindent מכאן נובע שבמרחב הילברט הקירוב הטוב היותר הוא יחיד. במרחב
+הילברט אנחנו מקבלים את המשפט הידוע 
+
+\section{קירובים במידה שווה\label{sec:uniformAprox}}
+
+\noindent תורת הקירובים נולדה מתוך הרצון לקרב פונקציה כלשהי מתוך מרחב
+פונקציות אחרות, למשל קירוב פונקציה רציפה מתוך פולינומים עד מעלה כלשהי.
+אך מלמה \L{\ref{lem:strictConvexity}} נובע שמקרה זה אנחנו לא יכול
+להשתמש במשפט היחידות )\L{\ref{thm:BestApproxUnique}}(, לכן נצטרך
+למצוא כלים חדשים להוכחת היחידות של הקירוב.
+
+\noindent מסתבר שקיים תנאי מספיק והכרחי ליחידות קירוב של פונקציה ב
+\L{$C[a,b]$} מתוך מרחב סוף מימדי. נתייחס ל \L{$C[a,b]$} כמרחב ממשי
+עם נורמת המקסימום.
+
+\noindent במרחב זה התכנסות לאיבר היא התכנסות במידה שווה של פונקציות,
+מה שמצדיק את השם של הפרק.
+\begin{definition}
+\noindent \textbf{תנאי האר}
+
+\noindent תת מרחב \L{$Y$} ממימד \L{$n$} של \L{$C[a,b]$} מקיים את
+\textbf{תנאי האר })\L{Haar Condition}( לכל \L{$0\neq y\in Y$} יש
+לכל היותר \L{$n-1$} שורשים ב\L{$[a,b]$}.
+\end{definition}
+\noindent הדוגמא הפשוטה ביותר לתת מרחב שמקיים את תנאי האר הוא המרחב
+\L{$Y_{n}$} של פולינומים ממעלה לכל היותר )כולל( \L{$n$}, הרי פולינום
+ממעלה עד \L{$n$} מתאפס \L{$n+1$} פעמים אם ורק אם הוא פולינוס האפס.
+לכן לכל פולינום שונה מאפס ב\L{$Y_{n}$} יש לכל היותר \L{$n$} שורשים.
+המימד של \L{$Y_{n}$} הוא \L{$n+1$} לכן \L{$Y_{n}$} מקיים את תנאי
+האר.
+\begin{lemma}
+\noindent \label{lem:harr}תת מרחב \L{$Y$} ממימד \L{$n$} של \L{$C[a,b]$}
+מקיים את תנאי האר אם ורק אם לכל בסיס \L{$\{y_{1}\ldots y_{n}\}$}
+ו-\L{$n$} נקודות \L{$t_{1},\ldots t_{n}$} שונות בקטע \L{$[a,b]$}
+מתקיים\L{
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}\neq0
+\]
+}\label{lem:=0005EA=0005EA-=0005DE=0005E8=0005D7=0005D1-=0005DE=0005DE=0005D9=0005DE=0005D3}
+\end{lemma}
+\begin{proof}
+\noindent נניח ש\L{$Y$} מקיים את תנאי האר.\\
+יהי \L{$\{y_{1},y_{2}\ldots y_{n}\}$} בסיס ל\L{$Y$}, \L{$\{t_{1}\ldots t_{n}\}$}.
+נניח בשלילה שמתקיים\L{
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}=0
+\]
+}התנאי הזה אומר שקיימים \L{$\alpha_{1}\ldots\alpha_{n}$} שלא כולם
+אפס כך ש\L{
+\[
+\alpha_{1}y_{1}\left(t_{k}\right)+\ldots+\alpha_{n}y_{n}\left(t_{k}\right)=0
+\]
+}לכל \L{$1\leq k\leq n$} )אם נקח את השחלוף של המטריצה הנוכחית, גם
+הדטרמיננטה שלה תיהיה {\beginL 0\endL}, ולכן התנאי מתקיים(. נגדיר\L{
+\[
+y=\sum_{i=1}^{n}\alpha_{i}y_{i}
+\]
+}\L{$y\neq0$} )מכיוון שהוא צירוף לינארי לא טריוויאלי של בסיס(. לכל
+\L{$1\leq k\leq n$} מתקיים \L{$y(t_{k})=0$}. זה בסתירה לתנאי האר,
+לכן ההנחה שהדרמיננטה היא {\beginL 0\endL} לא נכונה, כלומר היא שונה
+מ{\beginL 0\endL}. 
+
+\noindent נניח שתנאי האר לא מתקיים. תיהי \L{$0\neq y\in Y$} פונקציה
+המעידה על אי קיום של תנאי האר. יהיו \L{$t_{1}\ldots t_{n}$} אפסים
+של \L{$y$}. יהיה \L{$\left\{ y_{1}\ldots y_{n}\right\} $} בסיס של
+\L{$Y$}. קיימים \L{$\alpha_{1}\ldots\alpha_{n}$} כך שלא כולם אפסים
+כך ש\L{
+\[
+y=\sum_{i=1}^{n}\alpha_{i}y_{i}
+\]
+}מכך ש\L{$y$} מתאפסת ב\L{$t_{1}\ldots t_{n}$} אני מקבלים את מערכת
+המשוואות הליניאריות\L{
+\begin{align*}
+\alpha_{1}y_{1}\left(t_{1}\right)+\ldots+\alpha_{n}y_{n}\left(t_{1}\right) & =0\\
+ & \vdots\\
+\alpha_{1}y_{1}\left(t_{n}\right)+\ldots+\alpha_{n}y_{n}\left(t_{n}\right) & =0
+\end{align*}
+})המקדמים הם ה\L{$y_{j}(t_{i})$} -ים(. ידוע שלמשוואה יש פתרון לא טריוויאלי
+לכן )שוב, נקח את השחלוף של המטריצה הנוצרת ממערכת המשוואות(
+
+\noindent \L{
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}=0
+\]
+}
+\end{proof}
+\begin{remark}
+\noindent \label{commentHarrcondition}עם אי קיום תנאי האר אנחנו לומדים
+שני דברים על \L{$Y$}, שהם בעצם גם שקולים לאי קיום תנאי האר )\L{$\left\{ y_{1},\ldots,y_{n}\right\} $}
+בסיס כלשהו של \L{$Y$}(:
+\end{remark}
+\begin{enumerate}
+\item קיום \L{$t_{1}\ldots t_{n}$} כך שקיימים \L{$\alpha_{1}\ldots\alpha_{n}$}
+לא טריוואילים כך ש\\
+\L{$\alpha_{1}y_{k}(t_{1})+\ldots\alpha_{n}y_{k}(t_{n})=0$} לכל \L{$1\leq k\leq n$}
+)נובע מכך ששורות המטריצה תלויות לינארית(.
+\item קיום \L{$t_{1}\ldots t_{n}$} כך שקיימים \L{$\alpha_{1}\ldots\alpha_{n}$}
+לא טריוואילים כך ש\\
+\L{$\alpha_{1}y_{1}(t_{k})+\ldots\alpha_{n}y_{n}(t_{k})=0$} לכל \L{$1\leq k\leq n$}
+)נובע מכך שעמודות המטריצה תלויות לינארית(.
+\end{enumerate}
+\noindent מסתבר שתנאי האר הוא תנאי מספיק והכרחי לכך שהקירוב הטוב ביותר
+של פונקציה רציפה כלשהי מתוך \L{$Y$} יהיה יחיד. בשביל להוכיח תוצאה
+זאת נצטרך שימוש במושג נקודת קיצון\textbf{.}
+\begin{definition}
+\noindent יהי \L{$0\neq x\in C[a,b]$}. \L{$t_{0}\in[a,b]$} תיקראה
+\textbf{נקדות קיצון} של \L{$x$} אם \L{
+\[
+\abs{x\left(t_{0}\right)}=\left\Vert x\right\Vert 
+\]
+} 
+
+\noindent תנאי זה אומר בעצם \L{$x\left(t_{0}\right)=\pm\Vert x\Vert=\pm\max\left\{ \left|x(t)\right||t\in[a.b]\right\} $}.
+\end{definition}
+\noindent הלמה הבאה נותנת לנו קריטריון לבדיקת האם \L{$y\in Y$} הוא
+קירוב טוב ביותר של \L{$x\in C[a,b]$} כאשר \L{$Y$} תת מרחב סוף מימדי
+של \L{$C[a,b]$}.
+\begin{lemma}
+\noindent \label{lem:aprox_extream_point}יהי \L{$Y\subseteq C[a,b]$}
+תת מרחב ממימד \L{$n$} של \L{$C[a,b]$} המקיים את תנאי האר, יהי \L{$x\in C[a,b]$},
+ו\L{$y\in Y$}. אם ל \L{$x-y$} יש פחות מ \L{$n+1$} נקודות קיצון,
+אז \L{$y$} לא קירוב טוב ביותר של \L{$x$}.
+\end{lemma}
+\begin{remark}
+בניסוח למה \L{\ref{lem:aprox_extream_point}} יש לנו הנחה סמויה ש
+\L{$x-y\neq0$}. ניתן להניח את זה, מכיוון שאחרת \L{$x\in Y$} והדיון
+על קירוב טוב ביותר מאבד משמעות.
+\end{remark}
+\begin{proof}
+\noindent לפונקציה \L{$u=x-y$} יש \L{$m\leq n$} נקודות קיצון שונות.
+נסמן אותן ב\L{$t_{1}\ldots t_{m}$}. נוסיף להן את הנקודות \L{$t_{m+1}\ldots t_{n}$}
+כך שנקבל \L{$n$} נקודות שונות. יהי \L{$\left\{ y_{1}\ldots y_{n}\right\} $}
+בסיס ל \L{$Y$}, נתבונן במערכת המשוואות \L{
+\begin{align*}
+\alpha_{1}y_{1}\left(t_{1}\right)+\ldots+\alpha_{n}y_{n}\left(t_{1}\right) & =u(t_{1})\\
+ & \vdots\\
+\alpha_{1}y_{1}\left(t_{n}\right)+\ldots+\alpha_{n}y_{n}\left(t_{n}\right) & =u(t_{n})
+\end{align*}
+}\L{$Y$} מקיים את תנאי האר לכן, לפי \L{\ref{lem:harr}}, יש למערכת
+המשוואות פתרון יחיד \L{$\alpha_{1},\ldots\alpha_{n}$}. נגדיר \L{
+\[
+y_{0}=\alpha_{1}y_{1}+\cdots+\alpha_{n}y_{n}
+\]
+}בנוסף, עבור \L{$\epsilon$} ממשי נגדיר \L{
+\[
+\widetilde{y}=y+\epsilon y_{0}
+\]
+}נגדיר גם \L{$\widetilde{u}=x-\widetilde{y}$}. נוכיח שקיים \L{$\epsilon$}
+עבורו\L{
+\begin{equation}
+\norm{\widetilde{u}}<\left\Vert u\right\Vert \label{eq:4.1}
+\end{equation}
+}ומכאן ינבע ש\L{$\left\Vert x-\widetilde{y}\right\Vert <\left\Vert x-y\right\Vert $},
+כלומר \L{$y$} לא קירוב טוב ביותר של \L{$x$}. כדי להוכיח את )\L{\ref{eq:4.1}}(
+נעריך תחילה את \L{$\widetilde{u}$} בסביבת נקודות הקיצון של \L{$u$}.
+לכל \L{$t_{i}$} )\L{$i=1,\ldots m$}( קיימים \L{$\epsilon_{i}>0$}
+וסביבה \L{$N_{i}$} של \L{$t_{i}$} בה מתקיים \L{$\abs{y_{0}}\geq\frac{1}{2}\left\Vert u\right\Vert $}
+ו \L{$\left|u\right|>\epsilon_{i}$}. ב\L{$N_{i}$} )אי השיוויונות
+נובעים מכך ש\L{$u$} ו\L{$y_{0}$} רציפים ושמתקיים, לפי ההגדרה של
+\L{$y_{0}$}, \L{$\left|y_{0}(t_{i})\right|=\left|u(t_{i})\right|=\left\Vert u\right\Vert >0$}
+( נסמן \L{$N=N_{1}\cup\ldots\cup N_{m}$}. מכך שלכל \L{$t\in N$}
+מתקיים \L{$\left|u(t)\right|>0$} ו \L{$\left|y_{0}(t)\right|\geq\frac{1}{2}\left\Vert u\right\Vert $},
+ומכך ש \L{$N$} הוא איחוד של מספר סופי של \L{$N_{i}$} נובעים האי
+שוויונות\L{
+\begin{equation}
+\mu=\inf_{t\in N}\abs{u(t)}\geq\min_{1\leq i\leq m}\epsilon_{i}>0\quad\quad\inf_{t\in N}\abs{y_{0}(t)}\geq\frac{1}{2}\left\Vert u\right\Vert \label{eq:4-u_evaluation}
+\end{equation}
+}מכל שלכל \L{$t_{i}$} )\L{$1\leq i\leq m$}( מתקיים \L{$y_{0}(t_{i})=u(t_{i})$}
+נקבל שב\L{$N$} ל\L{$y_{0}$} ול\L{$u$} יש אותו סימן. אי לכך,\L{
+\[
+\frac{y_{0}(t)}{u(t)}=\frac{\abs{y_{0}(t)}}{\abs{u(t)}}\geq\frac{\inf\abs{y_{0}(t)}}{\left\Vert u\right\Vert }\geq\frac{1}{2}\quad t\in N
+\]
+}אם נסמן \L{$M_{0}=\underset{t\in N}{\sup}\abs{y_{0}(t)}$} אז נקבל
+שלכל \L{$\epsilon<\frac{\mu}{M_{0}}$} לכל \L{$t\in N$} מתקיים\L{
+\[
+\frac{\epsilon y_{0}(t)}{u(t)}=\frac{\epsilon\abs{y_{0}(t)}}{\abs{u(t)}}\leq\frac{\epsilon M_{0}}{\mu}<1
+\]
+}מכיוון ש \L{$\widetilde{u}=x-\widetilde{y}=x-y-\epsilon y_{0}=u-\epsilon y_{0}$}
+נקבל שלכל \L{$t\in N$} ו\L{$0<\epsilon<\frac{\mu}{M_{0}}$} מתקיים\L{
+\begin{align*}
+\abs{\widetilde{u}(t)} & =\abs{u(t)-\epsilon y_{0}(t)}=\abs{u(t)}\left(1-\frac{\epsilon y_{0}(t)}{u(t)}\right)\\
+ & \leq\left\Vert u\right\Vert \left(1-\frac{\epsilon}{2}\right)<\left\Vert u\right\Vert 
+\end{align*}
+}
+
+\noindent כעת נותר להעריך את \L{$\widetilde{u}$} ב \L{$K=J-N$} )כאשר
+\L{$J=[a,b]$}(. נגדיר\L{
+\[
+M_{1}=\max_{t\in K}\abs{y_{0}(t)}\quad\quad M_{2}=\max_{t\in K}\abs{u(t)}
+\]
+}מכיוון שלפי הגדרה, \L{$N$} מכילה את כל נקודות הקיצון של \L{$u$}
+אנחנו מקבלים \L{$M_{2}<\Vert u\Vert$} מה שמאפשר לנו לכתוב \L{$\Vert u\Vert=M_{2}+\eta$}
+כאשר \L{$\eta>0$}.
+
+\noindent נבחר \L{$\epsilon<\frac{\eta}{M_{1}}$} ונקבל שלכל\L{
+\[
+\abs{\widetilde{u}(t)}=\abs{u(t)-\epsilon y_{0}}\leq\abs{u(t)}+\epsilon M_{1}<M_{2}+\eta=\left\Vert u\right\Vert 
+\]
+}אם נבחר \L{$\epsilon<\min\left\{ \frac{\mu}{M_{0}},\frac{\eta}{M_{1}}\right\} $}
+נקבל \L{$\left|\widetilde{u}\right|<\left|u\right|$} לכל \L{$t\in N\cup K=J=[a,b]$}
+כלומר \L{$\left\Vert \widetilde{u}\right\Vert <\left\Vert u\right\Vert $}.
+כלומר הוכחנו ש-\L{$y$} לא קירוב טוב ביותר של \L{$x$} מתוך \L{$Y$}
+)מצאנו את \L{$y_{0}$} שהוא קירוב טוב יותר(.
+\end{proof}
+\noindent בעזרת למה \L{\ref{lem:aprox_extream_point}} נוכל להוכיח
+את משפט היחידות ב\L{$C[a,b]$}.
+\begin{theorem}
+\noindent \textbf{משפט היחידות במרחב פונקציות רציפות}
+\end{theorem}
+\noindent יהי \L{$Y$} הוא תת מרחב ממימד סופי של \L{$C[a,b]$}. אז
+שני התנאים הבאים שקולים:
+\begin{enumerate}
+\item \L{$Y$} מקיים את תנאי האר.
+\item לכל \L{$x\in C[a,b]$}, הקירוב הטוב ביותר שלו מתוך \L{$Y$} הוא יחיד.
+\end{enumerate}
+\begin{proof}
+\noindent נסמן \L{$n=\dim Y$}.
+
+\noindent {\beginL \textbf{1}\endL}\textbf{ \L{$\Leftarrow$} }{\beginL \textbf{2}\endL}\textbf{:
+}יהיה \L{$x\in C[a,b]$}. נניח ש\L{$Y$} מקיים את תנאי האר וש\L{$y_{1},y_{2}\in Y$}
+הם קירובים טובים ביותר של\L{$x$} מתוך \L{$Y$} )לפי משפט \L{\ref{thm:best_aprox_existence}}
+אכן קיים כזה(.
+
+\noindent נגדיר \L{$u_{1}=y_{1}-x$} ו \L{$u_{2}=y_{2}-x$}. מתקיים
+\L{
+\[
+\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =d\left(x,Y\right)=\delta
+\]
+}\L{$y_{1}$} ו\L{$y_{2}$} הם קירובים טובים ביותר של \L{$x$}, לכן,
+לפי \L{\ref{claim:best_aprox_convex}}, גם \L{$\frac{y_{1}+y_{2}}{2}$}
+הוא קירוב טוב ביותר, לכן אם נגדיר \L{
+\begin{equation}
+u=x-\frac{y_{1}+y_{2}}{2}=\frac{x-y_{1}+x-y_{2}}{2}=\frac{u_{1}+u_{2}}{2}\label{eq:aprox_C_unique_1}
+\end{equation}
+}נקבל \L{
+\[
+\left\Vert u\right\Vert =\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =\delta
+\]
+}
+
+\noindent לפי למה \L{\ref{lem:aprox_extream_point}} נקבל של\L{$u$}
+יש לפחות \L{$n+1$} נקודות קיצון, נסמנן \L{$t_{1}\ldots t_{n+1}$}.
+מנוסחא \L{\ref{eq:aprox_C_unique_1}} נקבל שלכל \L{$t_{i}$} חייב
+להתקיים \L{
+\[
+\left|u\left(t_{i}\right)\right|=\delta
+\]
+}מכאן נקבל \L{
+\[
+2\delta=\left|2u\left(t_{i}\right)\right|=\left|u_{1}\left(t_{i}\right)+u_{2}\left(t_{i}\right)\right|
+\]
+}אבל אנחנו יודעים ש\L{$\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =\delta$}
+כלומר לכל \L{$t\in\left[a,b\right]$} מתקיים\L{
+\[
+\left|u_{1}\left(t\right)\right|,\left|u_{2}\left(t\right)\right|\leq\delta
+\]
+}לכן בנקודות \L{$t_{i}$} חייב להתקיים \L{
+\[
+u_{1}\left(t_{i}\right)=u_{2}\left(t_{i}\right)=\pm\delta
+\]
+}מכאן אנחנו מקבלים שלפונקציה \L{$\widetilde{u}=u_{1}-u_{2}=y_{1}-y_{2}$}
+יש לפחות \L{$n+1$} אפסים )כל \L{$t_{i}$} הוא אפס של \L{$\widetilde{u}$}(,
+אבל \L{$Y$} מקיים את תנאי האר, לכן \L{$\widetilde{u}=0$} כלומר \L{$y_{1}=y_{2}$},
+מכאן היחידות.
+
+\noindent {\beginL \textbf{2}\endL}\textbf{ \L{$\Leftarrow$} }{\beginL \textbf{1}\endL}\textbf{:
+}נניח ש\L{$Y$} לא מקיים את תנאי האר, ונוכיח שקיים \L{$x\in C[a,b]$}
+כך שיש לו מספר קירובים טובים ביותר מתוך \L{$Y$}.
+
+\noindent נציין תחילה ש\L{$Y$} לא מקיים את תנאי האר, לכן לפי משפט
+\L{\ref{lem:harr}} קיימים \L{$t_{1}\ldots t_{n}\in[a,b]$} שונים
+ובסיס \L{$y_{1}\ldots y_{n}$} כך שקיים צירוף לינארי לא טריוואלי\L{
+\[
+\sum_{i=1}^{n}\alpha_{i}y_{i}(t_{k})=0
+\]
+} לכל \L{$1\leq k\leq n$}, נסמן \L{$y=\sum_{i=1}^{n}\alpha_{i}y_{i}$}.
+בנוסף, לפי הערה \L{\ref{commentHarrcondition}} קיימים \L{$\beta_{1}\ldots\beta_{n}$}
+לא טריוויאלים כך ש\L{
+\begin{equation}
+\sum_{i=1}^{n}\beta_{i}y_{k}(t_{i})=0\label{eq:non_haar_2}
+\end{equation}
+}לכל \L{$1\leq k\leq n$}.
+
+\noindent יהיה \L{$z\in C[a,b]$} המקיימת\L{
+\[
+\left\Vert z\right\Vert =1\quad,\quad z(t_{i})=sgn(\beta_{i})=\begin{cases}
+1 & \beta_{i}\geq0\\
+-1 & \beta_{i}\leq0
+\end{cases}
+\]
+}קיימת \L{$z$} כזאת )לדוגמא האינטרפולציה הלינארית המתאימה(.
+
+\noindent יהי גם \L{$\lambda>0$} קטן כך ש \L{$\norm{\lambda y}\leq1$}
+)קיים כזה, מתכונות הנורמה(.
+
+\noindent נגדיר \L{
+\[
+x(t):=z(t)\left(1-\abs{\lambda y(t)}\right)
+\]
+}\L{$x\in C[a,b]$}, כחיבור וכפל של פונקציות רציפות. מתקיים\L{
+\[
+x\left(t_{i}\right)=z\left(t_{i}\right)\left(1-\left|\lambda y\left(t_{i}\right)\right|\right)=z\left(t_{i}\right)\left(1-0\right)=sgn(\beta_{i})
+\]
+}
+
+\noindent בנוסך לכל \L{$t\in[a,b]$} מתקיים \L{$0\leq1-\abs{\lambda y(t)}\leq1$}
+לכן \L{
+\[
+\abs{x\left(t\right)}=\abs{z\left(t\right)}\abs{1-\abs{\lambda(t)}}\leq\abs{1-\abs{\lambda(t)}}\leq1
+\]
+} כלומר \L{$\left\Vert x\right\Vert \leq1$}. יחד עם הנוסחא הקודמת
+נקבל \L{$\left\Vert x\right\Vert =1$}.
+
+\noindent נוכיח תחילה ש\L{$\delta:=d(x,Y)\geq1$}. נניח שקיימת \L{$\hat{y}=\sum_{i=0}^{n}a_{i}y_{i}$}
+כך ש\L{$\norm{x-\hat{y}}<1$}. מתקיים \L{$x\left(t_{i}\right)=sgn\beta_{i}=\pm1$}
+לכן \L{
+\[
+\abs{x\left(t_{i}\right)-\hat{y}\left(t_{i}\right)}\leq\norm{x-\hat{y}}<1
+\]
+}כלומר אם \L{$\beta_{i}\neq0$} , \L{$y\left(t_{i}\right)$} לא יכול
+להחליף את הסימן של \L{$x\left(t_{i}\right)-\hat{y}\left(t_{i}\right)$}
+מהסימן של \L{$x\left(t_{i}\right)$}, כלומר\L{
+\[
+sgn\text{ }\hat{y}(t_{i})=sgn\beta_{i}
+\]
+}כלומר מתקיים \L{$\hat{y}(t_{i})=\abs{\hat{y}(t_{i})}sgn\beta_{i}$}.
+
+\noindent לפי נוסחא )\L{\ref{eq:non_haar_2}}( אנחנו מקבלים\L{
+\[
+\sum_{i=1}^{n}\beta_{i}\hat{y}\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\sum_{k=1}^{n}a_{k}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}\alpha_{k}\sum_{i=1}^{n}\beta_{i}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}\alpha_{k}\times0=0
+\]
+}אבל \L{$\beta_{1}\ldots\beta_{n}$} הם לא טריוויאלים לכן לפחות אחד
+מהם שונה מ-{\beginL 0\endL} לכן\L{
+\[
+\sum_{i=1}^{n}\beta_{i}\hat{y}\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\abs{\hat{y}(t_{i})}sgn\beta_{i}=\sum_{i=1}^{n}\abs{\beta_{i}}\abs{\hat{y}(t_{i})}\neq0
+\]
+}כלומר \L{$\delta\geq1$}. נראה שקיימים אינסוף קירובים טובים ביותר
+ל\L{$x$}.
+
+\noindent יהי \L{$\epsilon\in[-1,1]$}\L{
+\begin{align*}
+\abs{x(t)-\epsilon\lambda y(t)} & \leq\abs{x(t)}+\abs{\epsilon\lambda y(t)}\\
+ & =\abs{z(t)}\left(1-\abs{\lambda y(t)}\right)+\abs{\epsilon\lambda y(t)}\\
+ & \leq1-\abs{\lambda y(t)}+\abs{\epsilon\lambda y(t)}\\
+ & =1-\left(1-\abs{\epsilon}\right)\abs{\lambda y_{0}\left(t\right)}\\
+ & \leq1
+\end{align*}
+}כלומר \L{$\norm{x(t)-\epsilon\lambda y(t)}\leq1$}. לכן \L{$\norm{x(t)-\epsilon\lambda y(t)}=1$}.
+כלומר לכל \L{$\epsilon\in[-1,1]$} קיים קירוב טוב ביותר שונה )כי הם
+נפרדים בהכפלה בקבוע ו\L{$y\not\equiv0$}(, ובפרט הקירוב לא יחיד. 
+\end{proof}
+
+\section{פולינומי צ'בישב\label{sec:Chebyshev}}
+
+\noindent אם \L{$p(t)=a_{n-1}t^{n-1}+\ldots+a_{1}t+a_{0}$} קירוב
+טוב ביותר של \L{$t^{n}$} מתוך \L{$Y_{n-1}$} אז \L{$\norm{t^{n}-p}$}
+מינימלי מתוך \L{$Y_{n-1}$} . לכן הבעיה של מציאת קירוב טוב ביותר של
+\L{$t^{n+1}$} מתחלפת בבעיה של למצוא פולינום מתוקן ממעלה \L{$n$}
+בעל נורמה מינימלית. לשם כך, נזדקק למשפט, שעצם נכנותו מהווה רמז עבה
+לקשר של פולינומי צ'בישב לנושא. אך לפני זאת, נצטרך את ההגדרה הבאה.
+\begin{definition}
+\noindent \textbf{קבוצה סירוגית}
+\end{definition}
+\noindent תיהי \L{$x\in C[a,b]$} פונקציה רציפה. סדרת המספרים \L{$t_{0}<\ldots<t_{k}$}
+תיקרא \textbf{קבוצה סירוגית} של \L{$x$} אם \L{$x$} מקבלת את הערך
+\L{$\pm\Vert x\Vert$} לסירוגין ב\L{$t_{i}$} )כלומר אם \L{$x(t_{0})=\pm\Vert x\Vert$}
+ו \L{$x(t_{j})=-x(t_{j-1})$} לכל \L{$1\leq j\leq k$}(. \L{$k$}
+ייקרא \textbf{האורך של הקבוצה}.
+\begin{lemma}
+\noindent \label{lem:best_aprox_alter_set}יהי \L{$Y$} תת מרחב ממימד
+\L{$n<\infty$} של \L{$C[a,b]$} המקיים את תנאי האר, ו\L{$x\in C[a,b]$}.
+יהי \L{$y\in Y$}. אם ל \L{$x-y$} יש קבוצה סירוגית מאורך \L{$n+1$}
+אז \L{$y$} קירוב טוב ביותר של \L{$x$} מתוך \L{$Y$}.
+\end{lemma}
+\begin{proof}
+\noindent נסמן את הקבוצה הסירוגית ב \L{$t_{0}<\ldots<t_{n}$}. יהי
+\L{$y_{0}\in Y$} הקירוב הטוב ביותר של \L{$x$} )שאכן קיים, מכיוון
+ש \L{$Y$} הוא סוף מימדי(. נניח ש \L{$y$} הוא לא קירוב טוב ביותר.
+נסמן\L{
+\[
+u=x-y\quad u_{0}=x-y_{0}
+\]
+} \L{$y_{0}$} הוא הקירוב הטוב ביותר, כלומר מתקיים \L{$\left\Vert u\right\Vert =\Vert x-y\Vert>\Vert x-y_{0}\Vert=\left\Vert u_{0}\right\Vert $}.
+לכן אם נסמן\L{
+\[
+\tilde{u}=\left(x-y\right)-\left(x-y_{0}\right)=y_{0}-y
+\]
+} מתקיים \L{$\left|u_{0}\left(t_{i}\right)\right|\leq\left\Vert u_{0}\right\Vert <\left\Vert u\right\Vert =\left|u\left(t_{i}\right)\right|$}
+מכאן נובע ש-\L{$\tilde{u}\left(t_{i}\right)$} יש אותו סימן כמו \L{$u\left(t_{i}\right)$}
+)מכיוון ש- \L{$u(t_{i})=\pm\left\Vert u\right\Vert $} ו-\L{$u_{0}\left(t_{i}\right)$}
+לא יכול לחרוג, בערכו המוחלט, מ\L{$\left\Vert u\right\Vert $}(, והוא
+שונה מ{\beginL \L{$0$}\endL}. מכאן נובע שלפונקציה \L{$y_{0}-y$}
+יש לפחות \L{$n$} שורשים )היא רציפה, ו \L{$sgn\left(\tilde{u}\left(t_{i}\right)\right)=-sgn\left(\tilde{u}\left(t_{i-1}\right)\right)\neq0$}
+לכל \L{$1\leq i\leq n$}(. אבל \L{$Y$} מקיים את תנאי האר, לכן \L{$\tilde{u}=y_{0}-y=0$}
+או \L{$y=y_{0}$}, סתירה להנחה ש \L{$y$} לא קירוב טוב ביותר, כלומר
+חייב להתקיים ש \L{$y$} הוא קירוב טוב ביותר.
+\end{proof}
+\noindent כל פולינום מתוקן ב \L{$Y_{n+1}$} ניתן לכתיבה כ \L{$t^{n+1}-p(t)$}
+כאשר \L{$p\in Y_{n}$}. לכן אם נמצא פולינום מתוקן ב\L{$Y_{n+1}$}
+עם קבוצה סירוגית מאורך \L{$n+1$} אז אפשר למצוא ממנו פולינום ב\L{$Y_{n}$}
+שהוא הקירוב הטוב ביותר של \L{$t_{n+1}$} מתוך \L{$Y_{n}$}.
+
+בניסיון למצוא מתוקן פולינום עם סדרה סירוגית באורך \L{$n+1$} נזכר
+במשפחת פונקציות בעלות סדרות סירוגיות באורך ידוע, זאת משפחת הפונקציות
+הטריגונומטריות.
+
+\noindent %
+\begin{comment}
+הקוד הבא הוא ציור של פונקציית הסינוס
+\end{comment}
+\L{
+\begin{figure}
+\centering
+     \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {sin(\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=1$};
+            \draw [black, thick, fill=white] (pi/2 ,1) circle [radius=0.1];
+        \end{tikzpicture}
+    }
+    \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {sin(2*\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=2$};
+            \draw [black, thick, fill=white] (pi/4 ,1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (3*pi/4 ,-1) circle [radius=0.1];
+        \end{tikzpicture}
+    }
+    \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {sin(3*\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=3$};
+            \draw [black, thick, fill=white] (pi/6 ,1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (3*pi/6 ,-1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (5*pi/6 ,1) circle [radius=0.1];
+        \end{tikzpicture}
+     } \caption{\R{\foreignlanguage{hebrew}{שרטוט של הפונקציה \L{$\sin n\theta$} ונקודות הקיצון שלה בקטע \L{$[0,\pi]$}\label{fig:sin_extream_points}}}}
+\end{figure}
+}
+
+\noindent %
+\begin{comment}
+הקוד הבא הוא ציור של פונקציית הקוסינוס
+\end{comment}
+\L{
+\begin{figure}
+\centering
+     \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {cos(\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=1$};
+			\draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (pi ,-1) circle [radius=0.1];
+        \end{tikzpicture}
+    }
+    \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {cos(2*\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=2$};
+            \draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (pi/2 ,-1) circle [radius=0.1];
+			\draw [black, thick, fill=white] (pi ,1) circle [radius=0.1];
+        \end{tikzpicture}
+    }
+    \subfigure{
+        \begin{tikzpicture}[scale=1]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-0.2,0) -- (pi+0.1,0);
+            \draw[black, ultra thick, domain=0:pi] plot (\x, {cos(3*\x r)});
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi,0) {$\pi$};
+            \node [below] at (pi/2,-1) {$n=3$};
+            \draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (pi/3 ,-1) circle [radius=0.1];
+            \draw [black, thick, fill=white] (2*pi/3 ,1) circle [radius=0.1];
+			\draw [black, thick, fill=white] (pi ,-1) circle [radius=0.1];
+        \end{tikzpicture}
+     }\caption{\R{\foreignlanguage{hebrew}{שרטוט של הפונקציה \L{$\cos n\theta$} ונקודות הקיצון שלה בקטע \L{$[0,\pi]$}\label{fig:cos_extream_points}}}}
+
+\R{\selectlanguage{hebrew}%
+\selectlanguage{english}}%
+\end{figure}
+}
+
+\noindent ניתן לראות שבקטע \L{$\left[0,\pi\right]$} לפונקיצה \L{$\cos n\theta$}
+יש קבוצה סירוגית עם אורך \L{$n+1$} לעומת \L{$\sin nx$} שיש לה קבוצה
+סירוגית באורך \L{$n$} לכל היותר )ראה איורים \L{\ref{fig:sin_extream_points}}
+ו\L{\ref{fig:cos_extream_points}}(. לכן באופן טבעי אנחנו נמשיך עם
+החקר של הפונקציות \L{$\cos n\theta$}. כשמתחילים את העיסוק בפונקציות
+\L{$\cos n\theta$} אנחנו מייד נתקלים בבעיה, \L{$\cos n\theta$} היא
+בכלל לא פולינום! והרי אנחנו מחפשים קירובים מתוך \L{$Y_{n}$}. לשם
+כל נעזר בפונקציה ההופכית ל\L{$\cos\theta$}, הלא היא \L{$\arccos t$}
+מהקטע \L{$[-1,1]$} על הקטע \L{$[0,\pi]$}. אנחנו מקבלים את סדרת הפונקציות
+\L{$T_{n}(t)=\cos\left(n\arccos t\right)\in C[-1,1]$}. \L{$\arccos t$}
+היא על \L{$\left[0,\pi\right]$} וחח\char`\"{}ע, לכן ל\L{$T_{n}$}
+יש קבוצה סירוגית באורך \L{$n+1$}, והיא המקור של הקבוצה הסירוגית מאורך
+\L{$n+1$} של \L{$\cos n\theta$} תחת \L{$\arccos t$}.הקבוצה הסירוגית
+מאורך \L{$n+1$} של \L{$\cos n\theta$} בקטע \L{$[0,\pi]$} שהן \L{$\left\{ \frac{k\pi}{n}\right\} _{k=0}^{n}$}.
+לכן שהקבוצות הסירוגיות של \L{$T_{n}$} הן \L{$\left\{ \cos\frac{k\pi}{n}\right\} _{k=0}^{n}$}.
+פונקציית הקוסינוס היא מונוטונית ממש בקטע \L{$[0,\pi]$} לכן זאת אכן
+קבוצה סירוגית(.
+
+\noindent עדיין לא ברור שהפונקציות שקיבלנו הן פולינומים, נוכיח זאת
+בטענה הבאה.
+\begin{claim}
+\noindent \label{claim:chebyshev_is_polynomial}לכל \L{$n\geq0$}
+הפונקציה \L{$T_{n}\left(t\right)=\cos\left(n\arccos t\right)$} היא
+פולינום ב\L{$C[-1,1]$} ממעלה \L{$n$}, ולכל \L{$n>0$} מתקיים \L{$T_{n-1}\left(t\right)+T_{n+1}\left(t\right)=2tT_{n}\left(t\right)$}.
+\end{claim}
+\begin{proof}
+\noindent נסמן \L{$\theta=\arccos t$}. מתקיים\L{
+\begin{align*}
+T_{n+1}\left(t\right) & =\cos\left(n+1\right)\theta=\cos n\theta\cos\theta-\sin n\theta\sin\theta\\
+T_{n-1}\left(t\right) & =\cos\left(n-1\right)\theta=\cos n\theta\cos\theta+\sin n\theta\sin\theta
+\end{align*}
+}נחבר את השיוויונות ונקבל \L{
+\[
+T_{n+1}\left(t\right)+T_{n-1}\left(t\right)=2\cos n\theta\cos\theta=2\cos\theta T_{n}\left(t\right)=2tT_{n}\left(t\right)
+\]
+}.
+
+\noindent נוכיח באינדוקציה ש\L{$T_{n}$} פולינום. \L{$T_{0}\left(t\right)=1$}
+\L{$T_{1}\left(t\right)=t$}. נניח עבור כל \L{$k\leq n$} ונוכיח עבור
+\L{$n+1$}. \L{
+\[
+T_{n+1}\left(t\right)=2tT_{n}\left(t\right)-T_{n-1}\left(t\right)
+\]
+}אגף ימין של השיוויון הוא פעולות כפל וחיבור בין פולינומים, לכן הוא
+פולינום, כלומר \L{$T_{n+1}$} הוא פולינום. \L{$T_{n}$} הוא פולינום
+ממעלה \L{$n$} לכן \L{$2tT_{n}\left(t\right)$} פולינום ממעלה \L{$n+1$}.
+\L{$T_{n-1}$} הוא פולינום ממעלה \L{$n-1$} לכן החיסור באגף ימין לא
+מוריד את המעלה של \L{$2tT_{n}\left(t\right)$}, כלומר \L{$T_{n+1}$}
+הוא פולינום ממעלה \L{$n+1$}.
+\end{proof}
+\noindent כמסקנה מיידית אנחנו מקבלים
+\begin{corollary}
+\noindent לכל \L{$n\geq1$}, המקדם הראשי של \L{$T_{n}$} הוא \L{$2^{n-1}$}.
+\end{corollary}
+\begin{proof}
+\noindent נוכיח באינדוקציה. \L{$T_{1}\left(t\right)=t$} לכן הטענה
+מתקיימת. נניח ל\L{$n$}. מהנוסחא בטענה \L{\ref{claim:chebyshev_is_polynomial}}
+אנו מקבלים שהמקדם הראשי של \L{$T_{n+1}$} הוא {\beginL 2\endL} כפול
+המקדם הראשי של \L{$T_{n}$}, כלומר \L{
+\[
+2\times2^{n-1}=2^{n}=2^{(n+1)-1}
+\]
+}.
+\end{proof}
+\begin{definition}
+\noindent לפולינומים \L{$T_{n}$} נקרא \textbf{פולינום צ'בישב מסדר
+\L{$n$}.}
+\end{definition}
+\noindent מכאן והלאה נצמצם את הדיון שלנו לקטע \L{$[-1,1]$}, מכיוון
+שהעיסוק בפולינומי צ'בישב נוח בקטע זה.
+\begin{remark}
+\noindent ניתן להעתיק את הקטע \L{$[-1,1]$} על כל קטע \L{$[a,b]$}
+בצורה הומאומורפית, על ידי העתקה \L{$\varphi:t\mapsto\frac{b-a}{2}t+\frac{b-a}{2}+t$},
+ולהרחיב את התוצאות לכל קטע סגור. המרחבים \L{$C[-1,1]$} ו\L{$C[a,b]$}
+איזומורפיים כמרחבים ליניאריים ומטריים )וכנובע מכך גם טופולוגית(. ההעתקה
+שמראה איזומורפיזם זה היא \L{$\phi\left(x\right)=x\circ\varphi$} החד
+חד ערכית מ\L{$C[-1,1]$} על \L{$C[a,b]$}. העתקה זאת היא העתקה לינארית
+משמרת נורמה. קל לראות שאם \L{$Y$} תת מרחב של \L{$C[-1,1]$} ו\L{$x\in C[-1,1]$},
+אז \L{$y\in Y$} קירוב טוב ביותר של \L{$x$} מתוך \L{$Y$} אם ורק
+אם \L{$\phi\left(y\right)\in\phi\left(Y\right)$} קירוב טוב ביותר
+של \L{$\phi\left(x\right)\in C[a,b]$} מתוך \L{$\phi\left(Y\right)$}.
+\end{remark}
+\noindent פולינומי צ'בישב הם עדיין לא מהסוג הרצוי שהוצג בתחילת הפרק,
+אבל אם ננרמל את המקדם הראשי שלהם, נקבל בדיוק את הרצוי.
+\begin{theorem}
+\noindent \textbf{פולינום מתוקן בעל נורמה מינימלית}
+
+\noindent הפולינום המתוקן \L{
+\[
+\hat{T_{n}}\left(t\right)=\frac{1}{2^{n-1}}T_{n}\left(t\right)
+\]
+}הוא הפולינום המתוקן ממעלה \L{$n$} בעל הנורמה המינימלית ב\L{$C\left[-1,1\right]$}.
+\end{theorem}
+\begin{proof}
+\noindent התכונה של להיות פולינום מתוקן ממעלה \L{$n$} בעל נורמה מינימלית
+שקולה לתכונה ש\L{$y\left(t\right)=t^{n}-\hat{T}_{n}$} קירוב טוב ביותר
+של \L{$t^{n}$} מתוך \L{$Y_{n-1}$}, שהוא ממימד \L{$n$}. ל\L{$T_{n}$}
+יש קבוצה סירוגית באורך \L{$n+1$} לכן גם ל\L{$\hat{T_{n}}\left(t\right)$}
+יש )כי הוא הכפלה בקבוע של \L{$T_{n}$}(, כלומר ל\L{$t^{n}-y\left(t\right)=\hat{T_{n}}\left(t\right)$}
+יש קבוצה סירוגית באורך \L{$n+1$}, לכן מלמה \L{\ref{lem:best_aprox_alter_set}}
+אנחנו מקבלים ש\L{$y$} הוא קירוב טוב ביותר של \L{$t^{n}$} מתוך \L{$Y_{n-1}$},
+כלומר \L{$\hat{T_{n}}$} הוא הפולינום המתוקן ממעלה \L{$n$} עם הנורמה
+המינימלית.
+\end{proof}
+\noindent מהוכחת משפט זה אנחנו מקבלים את המסקנה הבאה, שהיא פותרת את
+הבעיה שהביאה אותנו לסעיף זה.
+\begin{corollary}
+\noindent הקירוב הטוב ביותר ב \L{$C[-1,1]$} של \L{$t^{n}$} בעזרת
+פולינומים ממעלה נמוכה מ-\L{$n$} הוא \L{
+\[
+y(t)=t^{n}-\hat{T}_{n}\left(t\right)=t^{n}-\frac{1}{2^{n-1}}T_{n}\left(t\right)
+\]
+}
+\end{corollary}
+\noindent פולינומי צ'בישב מאפשרים לנו לפתור בעיה יותר כללית, של קירוב
+פולינום כללי ב \L{$Y_{n}$} מתוך \L{$Y_{n-1}$}. יהי \L{$p\in Y_{n}$}.
+נניח \L{$p\not\in Y_{n-1}$}, אחרת הבעיה לא מעניינת. נסמן ב \L{$\alpha$}
+את המקדם הראשי של \L{$p$}, \L{$\alpha\neq0$}. יהי \L{$y\in Y_{n-1}$}
+קירוב טוב ביותר של \L{$p$}. אז \L{$\frac{1}{\alpha}y$} קירוב טוב
+ביותר של \L{$\frac{1}{\alpha}p$}, אחרת, אם \L{$\hat{y}$} הקירוב
+הטוב ביותר של \L{$\frac{1}{\alpha}p$} אז היה מתקיים \L{
+\[
+\left\Vert p-\alpha\hat{y}\right\Vert =\frac{\left|\alpha\right|}{\left|\alpha\right|}\left\Vert p-\alpha\hat{y}\right\Vert =\left|\alpha\right|\left\Vert \frac{1}{\alpha}p-\hat{y}\right\Vert <\left|\alpha\right|\left\Vert \frac{p}{\alpha}-\frac{1}{\alpha}y\right\Vert =\left\Vert p-y\right\Vert 
+\]
+}, כלומר \L{$y$} לא קירוב טוב ביותר של \L{$p$}. אבל \L{$\frac{1}{\alpha}p$}
+הוא פולינום מתוקן ממעלה \L{$n$}, לכן גם \L{$\frac{1}{\alpha}p-\frac{1}{\alpha}y$},
+אבל פולינום זה הוא מנורמה מינימלית, כלומר מתקיים\L{$\frac{1}{\alpha}p-\frac{1}{\alpha}y=\hat{T}_{n}$},
+או \L{
+\[
+y=p-\alpha\hat{T}_{n}=p-\frac{\alpha}{2^{n-1}}T_{n}
+\]
+}נעגן זאת במסקנה
+\begin{corollary}
+\noindent אם \L{$p$} פולינום ממעלה \L{$n$} עם מקדם ראשי \L{$\alpha$}
+אז הקירוב הטוב ביותר שלו ב \L{$C\left[-1,1\right]$} מתוך פולינומים
+ממעלה נמוכה מ-\L{$n$} הוא \L{
+\[
+p-\frac{\alpha}{2^{n-1}}T_{n}
+\]
+}
+\end{corollary}
+\noindent כעת נותר רק למצוא דרך נוחה לחשב את פולינומי צ'בישב. בעזרת
+משפט \L{\ref{claim:chebyshev_is_polynomial}} ותנאי ההתחלה \L{$T_{0}\left(t\right)=1$},
+\L{$T_{1}\left(t\right)=t$} ניתן לחשב את כל פולינומי צ'בישב.הפולינומים
+הראשונים הם\L{
+\begin{alignat*}{1}
+ & T_{0}\left(t\right)=1\\
+ & T_{1}\left(t\right)=t\\
+ & T_{2}\left(t\right)=2t^{2}-1\\
+ & T_{3}\left(t\right)=4t^{3}-3t\\
+ & T_{4}\left(t\right)=8t^{4}-8t^{2}+1\\
+ & T_{5}\left(t\right)=16t^{5}-20t^{3}+5t\\
+ & T_{6}\left(t\right)=32t^{6}-48t^{4}+18t^{2}-1
+\end{alignat*}
+}
+
+\noindent והנוסחא הכללית היא\L{
+\[
+T_{n}\left(t\right)=\frac{n}{2}\sum_{j=0}^{\left\lfloor \frac{n}{2}\right\rfloor }\left(-1\right)^{j}\frac{\left(n-j-1\right)!}{j!\left(n-2j\right)!}\left(2t\right)^{n-2j}
+\]
+}\\
+\begin{figure}[H]
+\centering{}\caption{פולינומי צ'בישב עד מעלה {\beginL 5\endL}}
+\L{\includegraphics[scale=0.1]{Chebyshev_Polynomials}}
+\end{figure}
+
+\pagebreak{}
+
+\bibliographystyle{plain}
+\bibliography{mybib}
+
+\end{document}

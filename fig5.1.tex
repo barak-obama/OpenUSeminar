@@ -1,0 +1,26 @@
+\documentclass{article}
+\usepackage{tikz}
+\usepackage{subfigure}
+
+\begin{document}
+
+
+
+\begin{figure}[h]
+\centering 
+    \centering
+       \begin{tikzpicture}[scale=3]
+            \draw [->] (0,-1) -- (0,1);
+            \draw [->] (-1.2,0) -- (1.2,0);
+            \draw[black, ultra thick, domain=-1:1] plot (\x, 1);
+            \draw[black, ultra thick, domain=-1:1] plot (\x, \x);
+            \draw[black, ultra thick, domain=-1:1] plot (\x, 2*\x *\x - 1);
+            \draw[black, ultra thick, domain=-1:1] plot (\x, 4 *\x * \x * \x - -3 * \x);
+            \node [below right] at (0,0) {0};
+            \node [below] at (pi/2,-1) {$n=3$};
+        \end{tikzpicture}
+           
+     \caption{}
+\end{figure} 
+
+\end{document}

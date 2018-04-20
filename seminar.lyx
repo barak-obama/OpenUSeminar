@@ -1,0 +1,4794 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass heb-article
+\begin_preamble
+\usepackage{commath}
+\usepackage{tikz} 
+\usepackage{subfigure}
+\usepackage{xifthen}
+
+
+
+\let\mybibitem\bibitem
+
+\renewcommand{\bibitem}[1]{\ifthenelse{\isin{heb}{#1}}{\selectlanguage{hebrew}\mybibitem{#1}}{\selectlanguage{english}\mybibitem{#1}}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding iso8859-8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation 0bp
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+מבוא
+\end_layout
+
+\begin_layout Standard
+\noindent
+תורת הקירובים עוסקת בקירוב של פונקציות מסובכות בעזרת פונקציות פשוטות יותר.
+ לרוב השימוש יהיה לקרב פונקציות רציפות )שהתנהגותן הכללית מסובכת יחסית( בעזרת
+ פולינומים )שהן פונקציות פשוטות(.
+ בתורת הקירובים עוסקים כבר בחשבון אינפיניטסימלי בסיסי, בכל הנוגע לפיתוחי
+ טיילור של פונקציה.
+ פיתוח טיילור ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ של פונקציה הוא פולינום ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ הנועד לקרב את הפונקציה המיועדת.
+ פיתוחי טיילור נוחים מאוד, בהיותם קלים לפיתוח, ובזכות העובדה שניתן להעריך
+ את השיגאה שלהם מהפונקציה, אך אם נגביל את את מעלת הפולינומים איתם אנו עובדים,
+ ייתכן ונמצא פולינומים שיותר מתאימים למטרה.
+ בעבודה נעסוק בקירובים של פולינומים בעזרת פולינומים אחרים, ממעלה נמוכה יותר,
+ ונמצא את הקירוב הטוב ביותר האפשרי שלהם )תחת נורמת המקסימום(.
+ זאת נעשה בפרק 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Chebyshev"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+בפרקים 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bestAprox"
+
+\end_inset
+
+ עד 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:uniqu"
+
+\end_inset
+
+ נעסוק בבעיה תיאורטית יותר, והיא בעיית הקירוב במרחבים נומריים כלליים.
+ בפרק 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:existence"
+
+\end_inset
+
+ נבדוק את הקיום של קירובים במרחבים נומריים.
+ פרק 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:uniqu"
+
+\end_inset
+
+ דן ביחידות של קירובים.
+\end_layout
+
+\begin_layout Standard
+בפרק 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:uniformAprox"
+
+\end_inset
+
+ נעסוק בקירוב במרחבי פונקציות רציפות )וממשיות(, מה שיאפשר את הדיון של קירוב
+ פונקציות על ידי פולינומים בפרק 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Chebyshev"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+העבודה מתבססת על הספר 
+\begin_inset Formula $\text{Introductory functional analysis with applications}$
+\end_inset
+
+ של 
+\begin_inset Formula $\text{Kreyszig}$
+\end_inset
+
+ )
+\begin_inset CommandInset citation
+LatexCommand cite
+key "kreyszig1989introductory"
+
+\end_inset
+
+(, וממשיכה הנושאים בהם עסקו ספרי הקורס "מבוא לאנליזה פונקציונלית" באוניברסיטה
+ הפתוחה )
+\begin_inset CommandInset citation
+LatexCommand cite
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+(.
+\end_layout
+
+\begin_layout Section*
+סימונים
+\end_layout
+
+\begin_layout Standard
+בהמשך נשתמש בסימונים הבאים:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $C\left[a,b\right]$
+\end_inset
+
+ מרחב 
+\series bold
+הפונקציות הממשיות
+\series default
+ מהקטע 
+\begin_inset Formula $\left[a,b\right]$
+\end_inset
+
+, יחד על נורמת המקסימום.
+ זהו מרחב ממשי.
+ המשתנה של פונקציות אלו הוא 
+\begin_inset Formula $t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $x,y,z$
+\end_inset
+
+ ישמשו כסימון לווקטורים במרחב אותו נחקור, ובפרט לפונקציות ב 
+\begin_inset Formula $C\left[a,b\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ תת מרחב הפולינומים ממעלה עד 
+\begin_inset Formula $n$
+\end_inset
+
+ )כולל( בתוך 
+\begin_inset Formula $C\left[a,b\right]$
+\end_inset
+
+.
+ זהו מרחב 
+\begin_inset Formula $n+1$
+\end_inset
+
+ מימדי.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\noindent
+הקירוב הטוב ביותר
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:bestAprox"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+בהינתן 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב של המרחב הנורמי 
+\begin_inset Formula $X$
+\end_inset
+
+ ו
+\begin_inset Formula $x\in X$
+\end_inset
+
+ אנו מעוניינים לדעת כמה "טוב" אפשר לקרב 
+\begin_inset Formula $x$
+\end_inset
+
+ על ידי איברים מ
+\begin_inset Formula $Y$
+\end_inset
+
+, כלומר למצוא 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $\Vert x-y\Vert$
+\end_inset
+
+ קטן ככל האפשר.
+ נזכר בהגדרה של מרחק של נקודה מקבוצה:
+\begin_inset Formula 
+\[
+\delta:=d(x,Y):=\underset{y\in Y}{\inf}\Vert x-y\Vert
+\]
+
+\end_inset
+
+מהגדרת האינפמום נובע שלכל 
+\begin_inset Formula $d>d(x,Y)$
+\end_inset
+
+ קיים 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $\Vert x-y\Vert<d$
+\end_inset
+
+.
+ אנו מעוניינים לדעת אם קיים ווקטור 
+\begin_inset Formula $y_{0}\in Y$
+\end_inset
+
+ המקיים:
+\begin_inset Formula 
+\[
+\Vert x-y_{0}\Vert=\delta
+\]
+
+\end_inset
+
+לווקטור כזה נקרא 
+\series bold
+הקירוב הטוב ביותר 
+\series default
+של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+בנוסף אנו נרצה לדעת האם הקירוב הטור ביותר הוא יחיד.
+\end_layout
+
+\begin_layout Standard
+במרחבי מכפלה פנימית הבעיה הזאת פתורה.
+ יהי 
+\begin_inset Formula $E$
+\end_inset
+
+ מרחב מכפלה פנימית.
+ אם 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב של 
+\begin_inset Formula $E$
+\end_inset
+
+, לפי 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 41.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ אנחנו למדים שלכל 
+\begin_inset Formula $x\in E$
+\end_inset
+
+ הקירוב הטוב יותר, אם קיים, הוא יחיד, ולפי 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 51.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ אם 
+\begin_inset Formula $Y$
+\end_inset
+
+ ממימד סופי אז אנחנו יודעים שהוא קיים, ואיך למצוא אותו.
+ בנוסף מ-
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 61.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ אנחנו למדים שאם 
+\begin_inset Formula $E$
+\end_inset
+
+ הוא מרחב הילברט, ו
+\begin_inset Formula $Y$
+\end_inset
+
+ הוא, במקום תת מרחב, קבוצה קמורה, אז גם אז הקירוב הטוב ביותר קיים.
+ לא נעסוק במקרים בהם 
+\begin_inset Formula $Y$
+\end_inset
+
+ לא תת מרחב ממימד סופי.
+\end_layout
+
+\begin_layout Theorem
+\noindent
+
+\series bold
+יחידות וקיום קירוב טוב יותר במרחב הילברט
+\end_layout
+
+\begin_layout Theorem
+\noindent
+יהי 
+\begin_inset Formula $H$
+\end_inset
+
+ מרחב הילברט, 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב סגור )לא בהכרח סוף מימדי( ו
+\begin_inset Formula $x\in X$
+\end_inset
+
+.
+ אז קיים קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ והוא יחיד )והוא 
+\begin_inset Formula $Px$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $P$
+\end_inset
+
+ היא ההטלה האורתוגונלית על 
+\begin_inset Formula $Y$
+\end_inset
+
+(
+\end_layout
+
+\begin_layout Proof
+\noindent
+כל תת מרחב הוא קמור, לכן לפי 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 61.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ לכל 
+\begin_inset Formula $x\in H$
+\end_inset
+
+ קיים קירוב טוב יותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+, והוא יחיד.
+ נסמנו 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+לפי ]
+\numeric on
+2
+\numeric off
+, משפט
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1.14
+\numeric off
+[ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $x-y\perp Y$
+\end_inset
+
+ לכן 
+\begin_inset Formula $x-y\in Y^{\perp}$
+\end_inset
+
+.
+ אם נסמן 
+\begin_inset Formula $x=n+m$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $n\in Y,m\in Y^{\perp}$
+\end_inset
+
+ אז מתקיים 
+\begin_inset Formula $P(x-y)=0$
+\end_inset
+
+ )כי 
+\begin_inset Formula $x-y\in Y^{\perp}$
+\end_inset
+
+( ו
+\begin_inset Formula $n-y\in Y$
+\end_inset
+
+ מכיוון ש
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ לכן
+\begin_inset Formula 
+\[
+0=P(x-y)=P(n+m-y)=P\left((n-y)+m\right)=n-y=Px-y\Rightarrow y=Px
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\noindent
+קיום
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:existence"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+נעבור עתה לדיון במרחבים נורמיים כלליים )ולא מרחבי הילברט(, ונגלה שכאן המצב
+ מסובך יותר.
+\end_layout
+
+\begin_layout Standard
+\noindent
+בשימושים רבים המרחב 
+\begin_inset Formula $Y$
+\end_inset
+
+ שאיתו נרצה לקרב יהיה ממימד סופי, במקרה פשוט יחסית זה, יש לנו את המשפט הבא
+\end_layout
+
+\begin_layout Theorem
+\noindent
+
+\series bold
+\size large
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:best_aprox_existence"
+
+\end_inset
+
+ - קיום קירוב טוב ביותר
+\end_layout
+
+\begin_layout Standard
+\noindent
+יהי 
+\begin_inset Formula $X$
+\end_inset
+
+ מרחב נורמי ו 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב ממימד סופי שלו.
+ במקרה זה, לכל 
+\begin_inset Formula $x\in X$
+\end_inset
+
+ יש קירוב טוב ביותר מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+יהי 
+\begin_inset Formula $x\in X$
+\end_inset
+
+, נוכיח שקיים לו קירוב טוב ביותר מ
+\begin_inset Formula $Y$
+\end_inset
+
+.
+ נתבונן בכדור הסגור הבא
+\begin_inset Formula 
+\[
+B=\left\{ y\in Y\big|\Vert y\Vert\leq2\Vert x\Vert\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+בהכרח מתקיים
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $0\in B$
+\end_inset
+
+ לכן 
+\begin_inset Formula 
+\[
+d(x,B)=\underset{y\in B}{\inf}\Vert x-y\Vert\leq\Vert x-0\Vert=\Vert x\Vert
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+מצד שני, אם 
+\begin_inset Formula $y\not\in B$
+\end_inset
+
+ אז מתקיים 
+\begin_inset Formula $\Vert y\Vert>2\Vert x\Vert$
+\end_inset
+
+ ולפי אי שוויון המשולש אנחנו מקבלים
+\begin_inset Formula 
+\begin{equation}
+\Vert x-y\Vert\geq\left|\left\Vert y\right\Vert -\left\Vert x\right\Vert \right|>\Vert x\Vert\geq d(x,B)\label{eq:strongInEquality}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+לכן, לכל 
+\begin_inset Formula $y\in Y\backslash B$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $d(x,B)<\Vert x-y\Vert$
+\end_inset
+
+.
+ לכן הקירוב הטוב ביותר יכול להתקבל רק בתוך 
+\begin_inset Formula $B$
+\end_inset
+
+.
+ נבדוק אם אכן קיים כזה ב 
+\begin_inset Formula $B$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+\begin_inset Formula $B$
+\end_inset
+
+ חסום וסגור
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+.
+ לכן הפונקציה 
+\begin_inset Formula $y\mapsto\Vert x-y\Vert$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $y\in B$
+\end_inset
+
+ מקבלת מינימום ב
+\begin_inset Formula $B$
+\end_inset
+
+ )ההוכחה זהה להוכחת 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 8.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+.
+ ניתן להשתמש בהוכחה זאת בזכות 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 8.6ב"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ ומכך שנורמה היא רציפה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+(.
+ נסמן את נקודת המינימום ב 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+.
+ בהכרך מתקיים 
+\begin_inset Formula $\Vert x-y_{0}\Vert=d(x,B)=d(x,Y)$
+\end_inset
+
+ , לכן 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ היא הקירוב הטוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Remarks
+\noindent
+הדרישה לסוף מימדיות היא הכרחית.
+ לדוגמא, ניקח 
+\begin_inset Formula $X=C(\mathbb{R})$
+\end_inset
+
+ מרחב הפונקציות הרציפות ב
+\begin_inset Formula $\mathbb{R}$
+\end_inset
+
+ ו
+\begin_inset Formula $Y=\mathbb{R}[t]$
+\end_inset
+
+ תת המרחב של כל הפולינומים.
+ 
+\begin_inset Formula $Y$
+\end_inset
+
+ צפוף ב
+\begin_inset Formula $X$
+\end_inset
+
+ )תוצאה מיידית של משפט ויישטראס - 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "משפט 02.8"
+key "odeOpenUheb"
+
+\end_inset
+
+( אבל 
+\begin_inset Formula $Y\neq X$
+\end_inset
+
+ לכן אם 
+\begin_inset Formula $d(f,Y)=0$
+\end_inset
+
+ אבל 
+\begin_inset Formula $f\in X\backslash Y$
+\end_inset
+
+ אז לא קיים 
+\begin_inset Formula $g\in Y$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $d(f,g)=0$
+\end_inset
+
+.
+ לדוגמא 
+\begin_inset Formula $f\left(t\right)=sin(t)\in X\backslash Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\noindent
+יחידות
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:uniqu"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+בצורה טבעית עולה השאלה האם הקירוב הטוב ביותר הוא יחד.
+ בצורה כללית, התשובה היא שלילית, ראו 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "שאלה 6, פרק 6"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Claim
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "claim:best_aprox_convex"
+
+\end_inset
+
+יהי 
+\begin_inset Formula $X$
+\end_inset
+
+ מרחב נורמי ו 
+\begin_inset Formula $x\in X$
+\end_inset
+
+, 
+\begin_inset Formula $Y\subseteq X$
+\end_inset
+
+ תת מרחב של 
+\begin_inset Formula $X$
+\end_inset
+
+.
+ נסמן ב
+\begin_inset Formula $M$
+\end_inset
+
+ את קבוצת הקירובים הטובים ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+ אז 
+\begin_inset Formula $M$
+\end_inset
+
+ קבוצה קמורה.
+\end_layout
+
+\begin_layout Proof
+\noindent
+לכל 
+\begin_inset Formula $y,z\in X$
+\end_inset
+
+ נסמן את הקטע בין 
+\begin_inset Formula $z$
+\end_inset
+
+ ל
+\begin_inset Formula $y$
+\end_inset
+
+ ב 
+\begin_inset Formula $[z,y]=\{tz+(1-t)y:0\leq t\leq1\}$
+\end_inset
+
+.
+ נרצה להוכיח שלכל 
+\begin_inset Formula $y,z\in M$
+\end_inset
+
+ 
+\begin_inset Formula $[z,y]\subseteq M$
+\end_inset
+
+, ואז נסיק, לפי הגדרה, כי 
+\begin_inset Formula $M$
+\end_inset
+
+ קמורה.
+\end_layout
+
+\begin_layout Proof
+\noindent
+\begin_inset Formula $Y$
+\end_inset
+
+ מרחב ווקטורי לכן 
+\begin_inset Formula $[z,y]\subseteq Y$
+\end_inset
+
+ לכן לכל 
+\begin_inset Formula $w\in[z,y]$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\Vert x-w\Vert\geq\delta$
+\end_inset
+
+, כאשר 
+\begin_inset Formula $\delta=d(x,Y)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+בנוסף, מתקיים
+\begin_inset Formula 
+\begin{align*}
+\Vert x-w\Vert & =\norm{(t+1-t)x-tz-(1-t)y}\\
+ & =\norm{t(x-z)+(1-t)(x-y)}\\
+ & \leq t\norm{x-z}+(1-t)\norm{x-y}\\
+ & =t\delta+(1-t)\delta=\delta
+\end{align*}
+
+\end_inset
+
+בשוויון לפני האחרון בכך ש
+\begin_inset Formula $z,y\in M$
+\end_inset
+
+ כלומר 
+\begin_inset Formula $\Vert x-z\Vert=\Vert z-y\Vert=\delta$
+\end_inset
+
+, הראינו שמתקיים 
+\begin_inset Formula $\norm{x-w}\leq\delta$
+\end_inset
+
+ וגם 
+\begin_inset Formula $\norm{x-w}\geq\delta$
+\end_inset
+
+ כלומר 
+\begin_inset Formula $\norm{x-w}=\delta$
+\end_inset
+
+, לכן 
+\begin_inset Formula $w\in M$
+\end_inset
+
+.
+ הוכחנו שאם לכל 
+\begin_inset Formula $y,z\in M$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $[z,y]\subseteq M$
+\end_inset
+
+, לכן 
+\begin_inset Formula $M$
+\end_inset
+
+ קמורה.
+\end_layout
+
+\begin_layout Standard
+\noindent
+אם 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ הוא קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ ו 
+\begin_inset Formula $d\left(x,Y\right)=\delta$
+\end_inset
+
+ אז הווקטור 
+\begin_inset Formula $v=\frac{x-y}{\delta}$
+\end_inset
+
+ הוא וקטור יחידה.
+ אם נסמן 
+\begin_inset Formula $\phi:y\mapsto\frac{x-y}{\delta}$
+\end_inset
+
+ אז 
+\begin_inset Formula $\phi(M)\subseteq B(0,1)$
+\end_inset
+
+, כאשר 
+\begin_inset Formula $M$
+\end_inset
+
+ היא קבוצת הקירוב הטובים ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+, כמו במשפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "claim:best_aprox_convex"
+
+\end_inset
+
+, ו-
+\begin_inset Formula $B(0,1)=\left\{ z\in X|\left\Vert z\right\Vert =1\right\} $
+\end_inset
+
+ היא ספירת היחידה.
+ נניח שקיימים 
+\begin_inset Formula $y,z\in Y$
+\end_inset
+
+ שונים שהם קירובים טובים ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ אז התמונה של הקטע 
+\begin_inset Formula $\left[z,y\right]$
+\end_inset
+
+ )המוכל ב
+\begin_inset Formula $M$
+\end_inset
+
+( תחת 
+\begin_inset Formula $\phi$
+\end_inset
+
+ היא הקבוצה 
+\begin_inset Formula 
+\begin{align*}
+\phi\left(\left[z,y\right]\right) & =\left\{ \phi\left(tz+\left(1-t\right)y\right):t\in\left[0,1\right]\right\} =\\
+ & =\left\{ t\frac{x-z}{\delta}+\left(1-t\right)\frac{x-y}{\delta}:t\in\left[0,1\right]\right\} =\left[\frac{x-z}{\delta},\frac{x-y}{\delta}\right]
+\end{align*}
+
+\end_inset
+
+ קבוצה זאת, כמו שהסברנו קודם, מוכלת ב-
+\begin_inset Formula $B(0,1)$
+\end_inset
+
+.
+ לכן ספירת היחידה מכילה קטע.
+\end_layout
+
+\begin_layout Standard
+\noindent
+אם נדרוש שספירת היחידה לא תכיל אף קטע נקבל שאין שני קירובים שונים )כי אז
+ היה קטע בניהם שמוכל ב
+\begin_inset Formula $M$
+\end_inset
+
+, לכן היה קטע שמוכל בספירת היחידה(, כלומר אם קיים קירוב הוא יחיד.
+\end_layout
+
+\begin_layout Standard
+\noindent
+נדרוש תנאי מעט חזק יותר שגורר שספירת היחידה לא מכילה אף קטע.
+\end_layout
+
+\begin_layout Definition
+\noindent
+מרחב נורמי 
+\begin_inset Formula $X$
+\end_inset
+
+ ייקרא 
+\series bold
+קמור לחלוטין
+\series default
+ אם לכל 
+\begin_inset Formula $x,y\in X$
+\end_inset
+
+ 
+\begin_inset Formula $(x\neq y)$
+\end_inset
+
+ המקיימים 
+\begin_inset Formula $\Vert x\Vert=\Vert y\Vert=1$
+\end_inset
+
+ ולכל 
+\begin_inset Formula $0<t<1$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\Vert tx+(1-t)y\Vert<1$
+\end_inset
+
+ .
+\end_layout
+
+\begin_layout Remarks
+\noindent
+בסימוני ההגדרה תמיד יתקיים 
+\begin_inset Formula $\Vert tx+(1-t)y\Vert\leq t\Vert x\Vert+(1-t)\Vert y\Vert=1$
+\end_inset
+
+.
+ במרחב קמור לחלוטין לא ייתכן שוויון.
+\end_layout
+
+\begin_layout Standard
+\noindent
+המשפט הבא נותן הגדרה שקולה )ונפוצה יותר( לאותו מושג
+\end_layout
+
+\begin_layout Theorem
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:striclyConvex"
+
+\end_inset
+
+מרחב נורמי 
+\begin_inset Formula $X$
+\end_inset
+
+ הוא קמור לחלוטין אמ"מ לכל 
+\begin_inset Formula $x,y\in X$
+\end_inset
+
+ 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+ המקיימים 
+\begin_inset Formula $\Vert x\Vert=\Vert y\Vert=1$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\Vert x+y\Vert<2$
+\end_inset
+
+.
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+
+\bar under
+כיוון ראשון:
+\bar default
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ קמור לחלוטי 
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $\Vert x+y\Vert<2$
+\end_inset
+
+ לכל 
+\begin_inset Formula $x$
+\end_inset
+
+ ו
+\begin_inset Formula $y$
+\end_inset
+
+ המקיימים 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+ ו 
+\begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+יהי 
+\begin_inset Formula $0<t<1$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\Vert x+y\Vert & =\Vert tx+(1-t)x+ty+(1-t)y\Vert=\\
+ & \leq\Vert tx+(1-t)y\Vert+\Vert ty+(1-t)x\Vert<\\
+ & <1+1=2
+\end{align*}
+
+\end_inset
+
+
+\bar under
+כיוון שני:
+\bar default
+ 
+\begin_inset Formula $\Vert x+y\Vert<2$
+\end_inset
+
+ לכל 
+\begin_inset Formula $x$
+\end_inset
+
+ ו
+\begin_inset Formula $y$
+\end_inset
+
+ המקיימים 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+ ו 
+\begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
+\end_inset
+
+ 
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ קמור לחלוטין
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+נוכיח את הטענה השקולה: אם 
+\begin_inset Formula $X$
+\end_inset
+
+ לא קמור לחלוטין אז קיימים 
+\begin_inset Formula $x,y\in X$
+\end_inset
+
+ המקיימים 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+ ו 
+\begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
+\end_inset
+
+ ו- 
+\begin_inset Formula $\Vert x+y\Vert=2$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+יהיו 
+\begin_inset Formula $x,y\in X$
+\end_inset
+
+ שונים כך ש 
+\begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
+\end_inset
+
+.
+ 
+\begin_inset Formula $X$
+\end_inset
+
+ לא קמור לחלוטין לכן קיים 
+\begin_inset Formula $z\in(x,y)=\{tx+(1-t)y:0<t<1\}$
+\end_inset
+
+ כך ש
+\begin_inset Formula $\Vert z\Vert=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נוכיח ש 
+\begin_inset Formula $[x,y]\subseteq B(0,1)$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+נניח קיים 
+\begin_inset Formula $x_{0}\in(x,y)$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $\Vert x_{0}\Vert<1$
+\end_inset
+
+ אז לכל 
+\begin_inset Formula 
+\[
+u\in(x,x_{0})=\{tx+(1-t)x_{0}:0<t<1\}
+\]
+
+\end_inset
+
+ מתקיים 
+\begin_inset Formula 
+\[
+\Vert u\Vert=\Vert tx+(1-t)x_{0}\Vert\leq t\Vert x\Vert+(1-t)\Vert x_{0}\Vert<t+1-t=1
+\]
+
+\end_inset
+
+באותו אופן נוכיח שלכל 
+\begin_inset Formula $u\in(x_{0},y)$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\Vert u\Vert<1$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+לכן לכל 
+\begin_inset Formula $u\in(x,y)$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\Vert u\Vert<1$
+\end_inset
+
+ בפרט גם 
+\begin_inset Formula $\Vert z\Vert<1$
+\end_inset
+
+, בסתירה לכך ש
+\begin_inset Formula $\Vert z\Vert=1$
+\end_inset
+
+.
+ לכן 
+\begin_inset Formula $[x,y]\subseteq B(0,1)$
+\end_inset
+
+.
+ לבסוף
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\Vert x+y\Vert=2\norm{\frac{x+y}{2}}=2\norm{\frac{x}{2}+\frac{y}{2}}=2\times1=2
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+כתוצאה מיידית מהדיון אנחנו מקבלים את המשפט הבא
+\end_layout
+
+\begin_layout Theorem
+\noindent
+
+\series bold
+- 
+\begin_inset CommandInset label
+LatexCommand label
+name "thm:BestApproxUnique"
+
+\end_inset
+
+משפט יחידות הקירוב הטוב ביותר
+\end_layout
+
+\begin_layout Theorem
+\noindent
+במרחב נורמי קמור לחלוטין 
+\begin_inset Formula $X$
+\end_inset
+
+ לכל 
+\begin_inset Formula $x\in X$
+\end_inset
+
+ קיים לכל היותר קירוב טוב ביותר אחד, לכל תת מרחב 
+\begin_inset Formula $Y\subseteq X$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+אם היו קיימים שני קירובים טובים ביותר 
+\begin_inset Formula $y_{1},y_{2}\in Y$
+\end_inset
+
+ שונים אז קבוצת הקירובים הטובים ביותר 
+\begin_inset Formula $M$
+\end_inset
+
+ מכילה קטע ולכן, כפי שהוסבר קודם, גם ספירת היחידה מכילה קטע, בסתירה לכך
+ ש
+\begin_inset Formula $X$
+\end_inset
+
+ קמור לחלוטין.
+ לכן יש לכל היותר קירוב טוב ביותר אחד.
+\end_layout
+
+\begin_layout Standard
+\noindent
+שני מקרים חשובים הם כאשר 
+\begin_inset Formula $X$
+\end_inset
+
+ מרחב מכפלה פנימית וכאשר 
+\begin_inset Formula $X=C[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:strictConvexity"
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+כל מרחב מכפלה פנימית הוא קמור לחלוטין
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ )עם נורמת המקסימום( לא קמור לחלוטין.
+\end_layout
+
+\begin_layout Proof
+\noindent
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+לפי אי שוויון המקבילית 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "פרק 4.1 נוסחא 3"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+ לכל 
+\begin_inset Formula $x\neq y$
+\end_inset
+
+ מנורמה 
+\numeric on
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+מתקיים
+\begin_inset Formula 
+\begin{align*}
+\Vert x+y\Vert^{2} & =2\left(\Vert x\Vert^{2}+\Vert y\Vert^{2}\right)-\Vert x-y\Vert^{2}=\\
+ & =4-\left\Vert x-y\right\Vert ^{2}<4
+\end{align*}
+
+\end_inset
+
+לכן 
+\begin_inset Formula 
+\[
+\Vert x+y\Vert<2
+\]
+
+\end_inset
+
+כלומר, לפי משפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:striclyConvex"
+
+\end_inset
+
+, 
+\begin_inset Formula $X$
+\end_inset
+
+ קמור לחלוטין
+\end_layout
+
+\begin_layout Proof
+\noindent
+ניקח
+\begin_inset Formula 
+\[
+y_{1}(x)=1\quad\quad y_{2}(x)=\frac{x-a}{b-a}
+\]
+
+\end_inset
+
+אז מתקיים 
+\begin_inset Formula 
+\[
+\Vert y_{1}\Vert=1\quad\quad\Vert y_{2}\Vert=1
+\]
+
+\end_inset
+
+בבירור 
+\begin_inset Formula $y_{1}\neq y_{2}$
+\end_inset
+
+ וגם מתקיים )מכיוון ש
+\begin_inset Formula $y_{2}$
+\end_inset
+
+ עולה( 
+\begin_inset Formula 
+\[
+\Vert y_{1}+y_{2}\Vert=\underset{x\in[a,b]}{\max}\left|1+\frac{x-a}{b-a}\right|=1+\frac{b-a}{b-a}=2
+\]
+
+\end_inset
+
+לכן 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ לא כמור לחלוטין.
+\end_layout
+
+\begin_layout Standard
+\noindent
+מכאן נובע שבמרחב הילברט הקירוב הטוב היותר הוא יחיד, כמו שהוזכר בפרק
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:bestAprox"
+
+\end_inset
+
+, תוצאה זאת ידוע לנו מהקורס "מבוא לאנליזה פונקציונלית", ראו 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "41.1"
+key "functionalAnalysisOpenUheb"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\noindent
+קירובים במידה שווה
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:uniformAprox"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+תורת הקירובים נולדה מתוך הרצון לקרב פונקציה כלשהי מתוך מרחב פונקציות אחרות,
+ למשל קירוב פונקציה רציפה מתוך פולינומים עד מעלה כלשהי.
+ אך מלמה 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:strictConvexity"
+
+\end_inset
+
+ נובע שבמקרה זה אנחנו לא יכול להשתמש במשפט היחידות )
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:BestApproxUnique"
+
+\end_inset
+
+(, לכן נצטרך למצוא כלים חדשים להוכחת היחידות של הקירוב בתתי מרחבים של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\noindent
+מסתבר שקיים תנאי מספיק והכרחי ליחידות קירוב של פונקציה ב 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ מתוך מרחב סוף מימדי.
+\end_layout
+
+\begin_layout Standard
+\noindent
+במרחב זה ההתכנסות היא התכנסות במידה שווה של פונקציות, מה שמצדיק את השם של
+ הפרק.
+\end_layout
+
+\begin_layout Definition
+\noindent
+
+\series bold
+- תנאי האר
+\end_layout
+
+\begin_layout Definition
+\noindent
+תת מרחב 
+\begin_inset Formula $Y$
+\end_inset
+
+ ממימד 
+\begin_inset Formula $n$
+\end_inset
+
+ של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ מקיים את 
+\series bold
+תנאי האר 
+\series default
+)
+\lang english
+Haar Condition
+\lang hebrew
+( אם לכל 
+\begin_inset Formula $0\neq y\in Y$
+\end_inset
+
+ יש לכל היותר 
+\begin_inset Formula $n-1$
+\end_inset
+
+ שורשים ב
+\begin_inset Formula $[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+דוגמא טיפוסית לתת מרחב שמקיים את תנאי האר הוא המרחב 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ של פולינומים ממעלה לכל היותר )כולל( 
+\begin_inset Formula $n$
+\end_inset
+
+, הרי פולינום ממעלה עד 
+\begin_inset Formula $n$
+\end_inset
+
+ מתאפס 
+\begin_inset Formula $n+1$
+\end_inset
+
+ פעמים אם ורק אם הוא פולינוס האפס.
+ לכן לכל פולינום שונה מאפס ב
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ יש לכל היותר 
+\begin_inset Formula $n$
+\end_inset
+
+ שורשים.
+ המימד של 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $n+1$
+\end_inset
+
+ לכן 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ מקיים את תנאי האר.
+\end_layout
+
+\begin_layout Lemma
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:harr"
+
+\end_inset
+
+תת מרחב 
+\begin_inset Formula $Y$
+\end_inset
+
+ ממימד 
+\begin_inset Formula $n$
+\end_inset
+
+ של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ מקיים את תנאי האר אם ורק אם לכל בסיס 
+\begin_inset Formula $\{y_{1}\ldots y_{n}\}$
+\end_inset
+
+ של 
+\begin_inset Formula $Y$
+\end_inset
+
+ ו-
+\begin_inset Formula $n$
+\end_inset
+
+ נקודות 
+\begin_inset Formula $t_{1},\ldots,t_{n}$
+\end_inset
+
+ שונות בקטע 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ מתקיים
+\lang english
+
+\begin_inset Formula 
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}\neq0
+\]
+
+\end_inset
+
+
+\lang hebrew
+
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:תת-מרחב-ממימד"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+נניח ש
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר.
+\begin_inset Newline newline
+\end_inset
+
+יהי 
+\begin_inset Formula $\{y_{1},y_{2}\ldots y_{n}\}$
+\end_inset
+
+ בסיס ל
+\begin_inset Formula $Y$
+\end_inset
+
+ ו- 
+\begin_inset Formula $\left\{ t_{1},\ldots,t_{n}\right\} \subseteq\left[a,b\right]$
+\end_inset
+
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ נקודות שונות.
+ נניח בשלילה שמתקיים
+\begin_inset Formula 
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}=0
+\]
+
+\end_inset
+
+התנאי הזה אומר שקיימים 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ שלא כולם אפס כך ש
+\begin_inset Formula 
+\[
+\alpha_{1}y_{1}\left(t_{k}\right)+\ldots+\alpha_{n}y_{n}\left(t_{k}\right)=0
+\]
+
+\end_inset
+
+לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ )אם נקח את השחלוף של המטריצה הנוכחית, גם הדטרמיננטה שלה תיהיה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+, ולכן התנאי מתקיים(.
+ נגדיר
+\begin_inset Formula 
+\[
+y=\sum_{i=1}^{n}\alpha_{i}y_{i}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $y\neq0$
+\end_inset
+
+ )מכיוון שהוא צירוף לינארי לא טריוויאלי של ווקטורי הבסיס(.
+ לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $y(t_{k})=0$
+\end_inset
+
+.
+ זה בסתירה לתנאי האר, לכן ההנחה שהדרמיננטה היא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+ לא נכונה, כלומר היא שונה מ
+\numeric on
+0-
+\numeric off
+.
+ 
+\end_layout
+
+\begin_layout Proof
+\noindent
+נניח שתנאי האר לא מתקיים.
+ תיהי 
+\begin_inset Formula $0\neq y\in Y$
+\end_inset
+
+ פונקציה המעידה על אי קיום של תנאי האר.
+ יהיו 
+\begin_inset Formula $t_{1},\ldots,t_{n}$
+\end_inset
+
+ אפסים של 
+\begin_inset Formula $y$
+\end_inset
+
+.
+ יהי 
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{n}\right\} $
+\end_inset
+
+ בסיס של 
+\begin_inset Formula $Y$
+\end_inset
+
+, קיימים 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ לא כולם אפסים כך ש
+\begin_inset Formula 
+\[
+y=\sum_{i=1}^{n}\alpha_{i}y_{i}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $y$
+\end_inset
+
+ מתאפסת ב
+\begin_inset Formula $t_{1},\ldots,t_{n}$
+\end_inset
+
+ לכן אנו מקבלים את מערכת המשוואות הליניאריות, בעלת פתרון לא טריוויאלי
+\begin_inset Formula 
+\begin{align*}
+\alpha_{1}y_{1}\left(t_{1}\right)+\ldots+\alpha_{n}y_{n}\left(t_{1}\right) & =0\\
+ & \vdots\\
+\alpha_{1}y_{1}\left(t_{n}\right)+\ldots+\alpha_{n}y_{n}\left(t_{n}\right) & =0
+\end{align*}
+
+\end_inset
+
+)המקדמים הם ה
+\begin_inset Formula $y_{j}(t_{i})$
+\end_inset
+
+ -ים(.
+ שוב, נקח את השחלוף של המטריצה הנוצרת ממערכת המשוואות ונקבל
+\end_layout
+
+\begin_layout Proof
+\noindent
+\begin_inset Formula 
+\[
+\begin{vmatrix}y_{1}(t_{1}) & y_{1}(t_{2}) & \ldots & y_{1}(t_{n})\\
+y_{2}(t_{1}) & y_{2}(t_{2}) & \ldots & y_{2}(t_{n})\\
+\vdots & \vdots & \ddots & \vdots\\
+y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
+\end{vmatrix}=0
+\]
+
+\end_inset
+
+הראינו אפוא שאם תנאי האר לא מתקיים אז הדטרמיננטה מתאפסת, ובכך הוכחנו את
+ הכיוון השני של המפשט.
+\end_layout
+
+\begin_layout Remarks
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "commentHarrcondition"
+
+\end_inset
+
+עם אי קיום תנאי האר אנחנו לומדים שני דברים על 
+\begin_inset Formula $Y$
+\end_inset
+
+, שהם בעצם גם שקולים לאי קיום תנאי האר )
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{n}\right\} $
+\end_inset
+
+ בסיס כלשהו של 
+\begin_inset Formula $Y$
+\end_inset
+
+(:
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+קיום 
+\begin_inset Formula $t_{1},\ldots,t_{n}$
+\end_inset
+
+ כך שקיימים 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ לא כולם אפסים כך ש
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\alpha_{1}y_{k}(t_{1})+\ldots+\alpha_{n}y_{k}(t_{n})=0$
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ )נובע מכך ששורות המטריצה תלויות לינארית(.
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+קיום 
+\begin_inset Formula $t_{1},\ldots,t_{n}$
+\end_inset
+
+ כך שקיימים 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ לא כולם אפסים כך ש
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\alpha_{1}y_{1}(t_{k})+\ldots+\alpha_{n}y_{n}(t_{k})=0$
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ )נובע מכך שעמודות המטריצה תלויות לינארית(.
+\end_layout
+
+\begin_layout Standard
+\noindent
+מסתבר שתנאי האר הוא תנאי מספיק והכרחי לכך שהקירוב הטוב ביותר של פונקציה
+ רציפה כלשהי מתוך מרחב ממימד סופי 
+\begin_inset Formula $Y$
+\end_inset
+
+ יהיה יחיד.
+ בשביל להוכיח תוצאה זאת נצטרך שימוש במושג נקודת קיצון
+\series bold
+.
+\end_layout
+
+\begin_layout Definition
+\noindent
+יהי 
+\begin_inset Formula $0\neq x\in C[a,b]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $t_{0}\in[a,b]$
+\end_inset
+
+ תיקראה 
+\series bold
+נקדות קיצון
+\series default
+ של 
+\begin_inset Formula $x$
+\end_inset
+
+ אם 
+\begin_inset Formula 
+\[
+\left|x\left(t_{0}\right)\right|=\left\Vert x\right\Vert 
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Definition
+\noindent
+תנאי זה אומר בעצם ש- 
+\begin_inset Formula $x\left(t_{0}\right)=\pm\Vert x\Vert=\pm\max\left\{ \left|x(t)\right||t\in[a.b]\right\} $
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+הלמה הבאה נותנת לנו קריטריון לבדיקת האם 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ הוא קירוב טוב ביותר של 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב סוף מימדי של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Lemma
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:aprox_extream_point"
+
+\end_inset
+
+יהי 
+\begin_inset Formula $Y\subseteq C[a,b]$
+\end_inset
+
+ תת מרחב ממימד 
+\begin_inset Formula $n$
+\end_inset
+
+ של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ המקיים את תנאי האר, יהי 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+, ו
+\begin_inset Formula $y\in Y$
+\end_inset
+
+.
+ אם ל 
+\begin_inset Formula $x-y$
+\end_inset
+
+ יש פחות מ 
+\begin_inset Formula $n+1$
+\end_inset
+
+ נקודות קיצון, אז 
+\begin_inset Formula $y$
+\end_inset
+
+ לא קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+לפונקציה 
+\begin_inset Formula $u=x-y$
+\end_inset
+
+ יש 
+\begin_inset Formula $m\leq n$
+\end_inset
+
+ נקודות קיצון שונות.
+ נסמן אותן ב
+\begin_inset Formula $t_{1},\ldots,t_{m}$
+\end_inset
+
+.
+ נוסיף להן את הנקודות 
+\begin_inset Formula $t_{m+1},\ldots,t_{n}$
+\end_inset
+
+ כך שנקבל 
+\begin_inset Formula $n$
+\end_inset
+
+ נקודות שונות.
+ יהי 
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{n}\right\} $
+\end_inset
+
+ בסיס ל 
+\begin_inset Formula $Y$
+\end_inset
+
+, נתבונן במערכת המשוואות 
+\begin_inset Formula 
+\begin{align*}
+\alpha_{1}y_{1}\left(t_{1}\right)+\ldots+\alpha_{n}y_{n}\left(t_{1}\right) & =u(t_{1})\\
+ & \vdots\\
+\alpha_{1}y_{1}\left(t_{n}\right)+\ldots+\alpha_{n}y_{n}\left(t_{n}\right) & =u(t_{n})
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר לכן, לפי 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:harr"
+
+\end_inset
+
+, יש למערכת המשוואות פתרון יחיד 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ כאשר לא כולם אפסים )מכיוון שאם כולם היו אפסים אז ערכי הקיצון של 
+\begin_inset Formula $u$
+\end_inset
+
+ היו
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+, לכן 
+\begin_inset Formula $u\equiv0$
+\end_inset
+
+, כלומר יש ל
+\begin_inset Formula $u$
+\end_inset
+
+ אין סוף נקודות קיצון, בסתירה לכך שיש לה מספר סופי של נקודות קיצון(.
+ נגדיר 
+\begin_inset Formula 
+\[
+y_{0}=\alpha_{1}y_{1}+\cdots+\alpha_{n}y_{n}
+\]
+
+\end_inset
+
+בנוסף, עבור 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ ממשי נגדיר 
+\begin_inset Formula 
+\[
+\widetilde{y}=y+\epsilon y_{0}\in Y
+\]
+
+\end_inset
+
+נגדיר גם 
+\begin_inset Formula $\widetilde{u}=x-\widetilde{y}$
+\end_inset
+
+.
+ נוכיח שקיים 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+ עבורו
+\lang english
+
+\begin_inset Formula 
+\begin{equation}
+\left\Vert \widetilde{u}\right\Vert <\left\Vert u\right\Vert \label{eq:4.1}
+\end{equation}
+
+\end_inset
+
+
+\lang hebrew
+זאת אומרת 
+\begin_inset Formula $\left\Vert x-\widetilde{y}\right\Vert <\left\Vert x-y\right\Vert $
+\end_inset
+
+, כלומר 
+\begin_inset Formula $y$
+\end_inset
+
+ לא קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ כדי להוכיח את )
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:4.1"
+
+\end_inset
+
+( נעריך תחילה את 
+\begin_inset Formula $\widetilde{u}$
+\end_inset
+
+ בסביבת נקודות הקיצון של 
+\begin_inset Formula $u$
+\end_inset
+
+.
+ לכל 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ )
+\begin_inset Formula $i=1,\ldots m$
+\end_inset
+
+( קיימים 
+\begin_inset Formula $\epsilon_{i}>0$
+\end_inset
+
+ וסביבה 
+\begin_inset Formula $N_{i}$
+\end_inset
+
+ של 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ בה מתקיים 
+\begin_inset Formula $\abs{y_{0}}\geq\frac{1}{2}\left\Vert u\right\Vert $
+\end_inset
+
+ ו 
+\begin_inset Formula $\left|u\right|>\epsilon_{i}$
+\end_inset
+
+.
+ ב
+\begin_inset Formula $N_{i}$
+\end_inset
+
+ )אי השיוויונות נובעים מכך ש
+\begin_inset Formula $u$
+\end_inset
+
+ ו
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ רציפים ושמתקיים, לפי ההגדרה של 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\left|y_{0}(t_{i})\right|=\left|u(t_{i})\right|=\left\Vert u\right\Vert >0$
+\end_inset
+
+(.
+ נסמן 
+\begin_inset Formula $N=N_{1}\cup\ldots\cup N_{m}$
+\end_inset
+
+.
+ מבניית 
+\begin_inset Formula $N$
+\end_inset
+
+ נובע ש
+\begin_inset Formula 
+\begin{equation}
+\mu=\inf_{t\in N}\abs{u(t)}\geq\min_{1\leq i\leq m}\epsilon_{i}>0\quad\quad\inf_{t\in N}\abs{y_{0}(t)}\geq\frac{1}{2}\left\Vert u\right\Vert \label{eq:4-u_evaluation}
+\end{equation}
+
+\end_inset
+
+מכל שלכל 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ )
+\begin_inset Formula $1\leq i\leq m$
+\end_inset
+
+( מתקיים 
+\begin_inset Formula $y_{0}(t_{i})=u(t_{i})$
+\end_inset
+
+ נקבל שב
+\begin_inset Formula $N$
+\end_inset
+
+ ל
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ ול
+\begin_inset Formula $u$
+\end_inset
+
+ יש אותו סימן.
+ אי לכך,
+\begin_inset Formula 
+\[
+\frac{y_{0}(t)}{u(t)}=\frac{\left|y_{0}(t)\right|}{\left|u(t)\right|}\geq\frac{\stackrel[t\in N]{}{\inf}\left|y_{0}(t)\right|}{\left\Vert u\right\Vert }\geq\frac{1}{2},\quad t\in N
+\]
+
+\end_inset
+
+אם נסמן 
+\begin_inset Formula $M_{0}=\underset{t\in N}{\sup}\abs{y_{0}(t)}$
+\end_inset
+
+ אז נקבל שלכל 
+\begin_inset Formula $\epsilon<\frac{\mu}{M_{0}}$
+\end_inset
+
+ ולכל 
+\begin_inset Formula $t\in N$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\[
+\frac{\epsilon y_{0}(t)}{u(t)}=\frac{\epsilon\left|y_{0}(t)\right|}{\left|u(t)\right|}\leq\frac{\epsilon M_{0}}{\mu}<1
+\]
+
+\end_inset
+
+מכיוון ש 
+\begin_inset Formula $\widetilde{u}=x-\widetilde{y}=x-y-\epsilon y_{0}=u-\epsilon y_{0}$
+\end_inset
+
+ נקבל שלכל 
+\begin_inset Formula $t\in N$
+\end_inset
+
+ ו
+\begin_inset Formula $0<\epsilon<\frac{\mu}{M_{0}}$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\begin{align*}
+\abs{\widetilde{u}(t)} & =\abs{u(t)-\epsilon y_{0}(t)}=\abs{u(t)}\left(1-\frac{\epsilon y_{0}(t)}{u(t)}\right)\\
+ & \leq\left\Vert u\right\Vert \left(1-\frac{\epsilon}{2}\right)<\left\Vert u\right\Vert 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+כעת נותר להעריך את 
+\begin_inset Formula $\widetilde{u}$
+\end_inset
+
+ ב 
+\begin_inset Formula $K=J\backslash N$
+\end_inset
+
+ )כאשר 
+\begin_inset Formula $J=[a,b]$
+\end_inset
+
+(.
+ נגדיר
+\begin_inset Formula 
+\[
+M_{1}=\max_{t\in K}\abs{y_{0}(t)}\quad\quad M_{2}=\max_{t\in K}\abs{u(t)}
+\]
+
+\end_inset
+
+מכיוון שלפי הגדרה, 
+\begin_inset Formula $N$
+\end_inset
+
+ מכילה את כל נקודות הקיצון של 
+\begin_inset Formula $u$
+\end_inset
+
+ אנחנו מקבלים 
+\begin_inset Formula $M_{2}<\Vert u\Vert$
+\end_inset
+
+ מה שמאפשר לנו לכתוב 
+\begin_inset Formula $\Vert u\Vert=M_{2}+\eta$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $\eta>0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נבחר 
+\begin_inset Formula $\epsilon<\frac{\eta}{M_{1}}$
+\end_inset
+
+ ונקבל שלכל 
+\begin_inset Formula $t\in K$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left|\widetilde{u}(t)\right|=\left|u(t)-\epsilon y_{0}\left(t\right)\right|\leq\abs{u(t)}+\epsilon M_{1}<M_{2}+\eta=\left\Vert u\right\Vert 
+\]
+
+\end_inset
+
+אם נבחר 
+\begin_inset Formula $\epsilon<\min\left\{ \frac{\mu}{M_{0}},\frac{\eta}{M_{1}}\right\} $
+\end_inset
+
+ נקבל 
+\begin_inset Formula $\left|\widetilde{u}\left(t\right)\right|<\left|u\left(t\right)\right|$
+\end_inset
+
+ לכל 
+\begin_inset Formula $t\in N\cup K=J=[a,b]$
+\end_inset
+
+ כלומר 
+\begin_inset Formula $\left\Vert \widetilde{u}\right\Vert <\left\Vert u\right\Vert $
+\end_inset
+
+.
+ כלומר הוכחנו ש-
+\begin_inset Formula $y$
+\end_inset
+
+ לא קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ )מצאנו את 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ שהוא קירוב טוב יותר(.
+\end_layout
+
+\begin_layout Standard
+\noindent
+בעזרת למה 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:aprox_extream_point"
+
+\end_inset
+
+ נוכל להוכיח את משפט היחידות ב
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset CommandInset include
+LatexCommand input
+filename "uniqueAproxFunctions.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\noindent
+פולינומי צ'בישב
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Chebyshev"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+עד כה עסקנו בקירוב של פונקציות כלליות על ידי מרחב פונקציות )בעיקר ממימד
+ סופי(.
+ לאחר שסיימנו עם התיאוריה, נתחיל לעסוק בפרקטיקה ונמצא כיצד נקרב פולינום
+ כלשהו ממעלה כלשהי בעזרת פולינומים ממעלה נמוכה יותר.
+ הבעיה הראשונה אותה נפתור היא כיצד נקרב את הפולינום 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ בעזרת פולינומים ממעלה נמוכה יותר, כלומר מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+.
+ אם 
+\begin_inset Formula $p(t)=a_{n-1}t^{n-1}+\ldots+a_{1}t+a_{0}$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+ אז 
+\begin_inset Formula $\norm{t^{n}-p}$
+\end_inset
+
+ מינימלי מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+.
+ לכן הבעיה של מציאת קירוב טוב ביותר של 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ מתחלפת בבעיה של למצוא פולינום מתוקן ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ בעל נורמה מינימלית.
+ לשם כך, נזדקק למשפט, שעצם נכנותו יהווה רמז עבה למשפחת הפולינומים שתעזור
+ לנו לפתור את הבעיה.
+ אך לפני זאת, נצטרך את ההגדרה הבאה.
+\end_layout
+
+\begin_layout Definition
+\noindent
+
+\series bold
+קבוצה סירוגית
+\end_layout
+
+\begin_layout Standard
+\noindent
+תיהי 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+ וסדרת המספרים 
+\begin_inset Formula $t_{0}<\ldots<t_{k}$
+\end_inset
+
+ תיקרא 
+\series bold
+קבוצה סירוגית
+\series default
+ של 
+\begin_inset Formula $x$
+\end_inset
+
+ אם 
+\begin_inset Formula $x$
+\end_inset
+
+ מקבלת את הערך 
+\begin_inset Formula $\pm\Vert x\Vert$
+\end_inset
+
+ לסירוגין ב
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ )כלומר אם 
+\begin_inset Formula $x(t_{0})=\pm\Vert x\Vert$
+\end_inset
+
+ ו 
+\begin_inset Formula $x(t_{j})=-x(t_{j-1})$
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq j\leq k$
+\end_inset
+
+(.
+ 
+\begin_inset Formula $k$
+\end_inset
+
+ ייקרא 
+\series bold
+האורך של הקבוצה
+\series default
+.
+\end_layout
+
+\begin_layout Theorem
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:best_aprox_alter_set"
+
+\end_inset
+
+יהי 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב ממימד 
+\begin_inset Formula $n$
+\end_inset
+
+ של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ המקיים את תנאי האר, ו
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+.
+ יהי 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+.
+ אם ל 
+\begin_inset Formula $x-y$
+\end_inset
+
+ יש קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ אז 
+\begin_inset Formula $y$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נסמן את הקבוצה הסירוגית ב 
+\begin_inset Formula $t_{0}<\ldots<t_{n}$
+\end_inset
+
+.
+ יהי 
+\begin_inset Formula $y_{0}\in Y$
+\end_inset
+
+ הקירוב הטוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ )שאכן קיים על פי 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:best_aprox_existence"
+
+\end_inset
+
+, מכיוון ש 
+\begin_inset Formula $Y$
+\end_inset
+
+ הוא סוף מימדי(.
+ נסמן
+\begin_inset Formula 
+\[
+u=x-y\quad u_{0}=x-y_{0}
+\]
+
+\end_inset
+
+ 
+\begin_inset Formula $y_{0}$
+\end_inset
+
+ הוא הקירוב הטוב ביותר, כלומר מתקיים 
+\begin_inset Formula $\left\Vert u\right\Vert =\Vert x-y\Vert>\Vert x-y_{0}\Vert=\left\Vert u_{0}\right\Vert $
+\end_inset
+
+.
+ לכן אם נסמן
+\begin_inset Formula 
+\[
+\tilde{u}=u-u_{0}=y_{0}-y
+\]
+
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\left|u_{0}\left(t_{i}\right)\right|\leq\left\Vert u_{0}\right\Vert <\left\Vert u\right\Vert =\left|u\left(t_{i}\right)\right|$
+\end_inset
+
+ מכאן נובע של-
+\begin_inset Formula $\tilde{u}\left(t_{i}\right)$
+\end_inset
+
+ יש אותו סימן כמו ל-
+\begin_inset Formula $u\left(t_{i}\right)$
+\end_inset
+
+ )מכיוון ש- 
+\begin_inset Formula $u(t_{i})=\pm\left\Vert u\right\Vert $
+\end_inset
+
+ ו-
+\begin_inset Formula $u_{0}\left(t_{i}\right)$
+\end_inset
+
+ לא יכול לחרוג, בערכו המוחלט, מ
+\begin_inset Formula $\left\Vert u\right\Vert $
+\end_inset
+
+(.
+ מכך ש 
+\begin_inset Formula $\tilde{u}$
+\end_inset
+
+ רציפה ומקיימת
+\begin_inset Formula 
+\[
+\text{sgn}\left(\tilde{u}\left(t_{i}\right)\right)=-\text{sgn}\left(\tilde{u}\left(t_{i-1}\right)\right)
+\]
+
+\end_inset
+
+ אנחנו מקבלים של
+\begin_inset Formula $\tilde{u}$
+\end_inset
+
+ יש 
+\begin_inset Formula $n$
+\end_inset
+
+ שורשים.
+ אבל 
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר, לכן 
+\begin_inset Formula $\tilde{u}=y_{0}-y=0$
+\end_inset
+
+ או 
+\begin_inset Formula $y=y_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $y$
+\end_inset
+
+ הוא הקירוב הטוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+כל פולינום מתוקן ב 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ ניתן לכתיבה כ 
+\begin_inset Formula $t^{n}-p(t)$
+\end_inset
+
+ כאשר 
+\begin_inset Formula $p\in Y_{n-1}$
+\end_inset
+
+.
+ לכן אם נמצא פולינום מתוקן ב
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ עם קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ אז 
+\begin_inset Formula $p\left(t\right)$
+\end_inset
+
+ ממקודם הוא הקירוב הטוב ביותר של 
+\begin_inset Formula $t_{n}$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+בניסיון למצוא פולינום מתוקן ממעהל 
+\begin_inset Formula $n$
+\end_inset
+
+ עם סדרה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ נזכר במשפחת פונקציות בעלות סדרות סירוגיות באורך ידוע, זאת משפחת הפונקציות
+ הטריגונומטריות.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+הקוד הבא הוא ציור של פונקציית הסינוס
+\end_layout
+
+\end_inset
+
+
+\lang english
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {sin(
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi/2 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {sin(2*
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=2$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi/4 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (3*pi/4 ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {sin(3*
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=3$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi/6 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (3*pi/6 ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (5*pi/6 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+     } 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+שרטוט של הפונקציה 
+\begin_inset Formula $\sin n\theta$
+\end_inset
+
+ ונקודות הקיצון שלה בקטע 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:sin_extream_points"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Note Comment
+status open
+
+\begin_layout Plain Layout
+הקוד הבא הוא ציור של פונקציית הקוסינוס
+\end_layout
+
+\end_inset
+
+
+\lang english
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\lang english
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\begin_layout Plain Layout
+
+     
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {cos(
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=1$};
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {cos(2*
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=2$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi/2 ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+draw [black, thick, fill=white] (pi ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+subfigure{
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+begin{tikzpicture}[scale=1]
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (0,-1) -- (0,1);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [->] (-0.2,0) -- (pi+0.1,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw[black, ultra thick, domain=0:pi] plot (
+\backslash
+x, {cos(3*
+\backslash
+x r)});
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below right] at (0,0) {0};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi,0) {$
+\backslash
+pi$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node [below] at (pi/2,-1) {$n=3$};
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (0 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (pi/3 ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+draw [black, thick, fill=white] (2*pi/3 ,1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+draw [black, thick, fill=white] (pi ,-1) circle [radius=0.1];
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+end{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+     }
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+שרטוט של הפונקציה 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+ ונקודות הקיצון שלה בקטע 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:cos_extream_points"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+ניתן לראות שבקטע 
+\begin_inset Formula $\left[0,\pi\right]$
+\end_inset
+
+ לפונקיצה 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+ יש קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ לעומת 
+\begin_inset Formula $\sin nx$
+\end_inset
+
+ שיש לה קבוצה סירוגית באורך 
+\begin_inset Formula $n$
+\end_inset
+
+ לכל היותר )ראה איורים 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:sin_extream_points"
+
+\end_inset
+
+ ו
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:cos_extream_points"
+
+\end_inset
+
+(.
+ לכן באופן טבעי אנחנו נמשיך עם החקר של הפונקציות 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+.
+ כשמתחילים את העיסוק בפונקציות 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+ אנחנו מייד נתקלים בבעיה, 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+ היא בכלל לא פולינום! והרי אנחנו מחפשים קירובים מתוך 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+.
+ לשם כל נעזר בפונקציה ההופכית ל
+\begin_inset Formula $\cos\theta$
+\end_inset
+
+, הלא היא 
+\begin_inset Formula $\arccos t$
+\end_inset
+
+ מהקטע 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+ על הקטע 
+\begin_inset Formula $[0,\pi]$
+\end_inset
+
+.
+ אנחנו מקבלים את סדרת הפונקציות 
+\begin_inset Formula $T_{n}(t)=\cos\left(n\arccos t\right)\in C[-1,1]$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\arccos t$
+\end_inset
+
+ היא על 
+\begin_inset Formula $\left[0,\pi\right]$
+\end_inset
+
+ וחח"ע בקטע 
+\begin_inset Formula $\left[-1,1\right]$
+\end_inset
+
+, לכן ל
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ יש קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+, והיא המקור של הקבוצה הסירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ של 
+\begin_inset Formula $\cos n\theta$
+\end_inset
+
+ תחת 
+\begin_inset Formula $\arccos t$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+עדיין לא ברור שהפונקציות שקיבלנו הן פולינומים, נוכיח זאת בטענה הבאה.
+\end_layout
+
+\begin_layout Claim
+\noindent
+\begin_inset CommandInset label
+LatexCommand label
+name "claim:chebyshev_is_polynomial"
+
+\end_inset
+
+לכל 
+\begin_inset Formula $n\geq0$
+\end_inset
+
+ הפונקציה 
+\begin_inset Formula $T_{n}\left(t\right)=\cos\left(n\arccos t\right)$
+\end_inset
+
+ היא פולינום ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ ב
+\begin_inset Formula $C[-1,1]$
+\end_inset
+
+, ולכל 
+\begin_inset Formula $n>0$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $T_{n-1}\left(t\right)+T_{n+1}\left(t\right)=2tT_{n}\left(t\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נסמן 
+\begin_inset Formula $\theta=\arccos t$
+\end_inset
+
+.
+ מתקיים
+\begin_inset Formula 
+\begin{align*}
+T_{n+1}\left(t\right) & =\cos\left(n+1\right)\theta=\cos n\theta\cos\theta-\sin n\theta\sin\theta\\
+T_{n-1}\left(t\right) & =\cos\left(n-1\right)\theta=\cos n\theta\cos\theta+\sin n\theta\sin\theta
+\end{align*}
+
+\end_inset
+
+נחבר את השיוויונות ונקבל 
+\begin_inset Formula 
+\[
+T_{n+1}\left(t\right)+T_{n-1}\left(t\right)=2\cos n\theta\cos\theta=2\cos\theta T_{n}\left(t\right)=2tT_{n}\left(t\right)
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נוכיח באינדוקציה ש
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ פולינום ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ 
+\begin_inset Formula $T_{0}\left(t\right)=1$
+\end_inset
+
+ 
+\begin_inset Formula $T_{1}\left(t\right)=t$
+\end_inset
+
+.
+ נניח ש 
+\begin_inset Formula $T_{k}\left(t\right)$
+\end_inset
+
+ פולינום ממעלה 
+\begin_inset Formula $k$
+\end_inset
+
+ עבור כל 
+\begin_inset Formula $k\leq n$
+\end_inset
+
+ ונוכיח זאת עבור 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+T_{n+1}\left(t\right)=2tT_{n}\left(t\right)-T_{n-1}\left(t\right)
+\]
+
+\end_inset
+
+אגף ימין של השיוויון הוא פעולות כפל וחיבור בין פולינומים, לכן הוא פולינום,
+ כלומר 
+\begin_inset Formula $T_{n+1}$
+\end_inset
+
+ הוא פולינום.
+ 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ הוא פולינום ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ לכן 
+\begin_inset Formula $2tT_{n}\left(t\right)$
+\end_inset
+
+ פולינום ממעלה 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+ 
+\begin_inset Formula $T_{n-1}$
+\end_inset
+
+ הוא פולינום ממעלה 
+\begin_inset Formula $n-1$
+\end_inset
+
+ לכן החיסור באגף ימין לא מוריד את המעלה של 
+\begin_inset Formula $2tT_{n}\left(t\right)$
+\end_inset
+
+, כלומר 
+\begin_inset Formula $T_{n+1}$
+\end_inset
+
+ הוא פולינום ממעלה 
+\begin_inset Formula $n+1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+כמסקנה מיידית אנחנו מקבלים
+\end_layout
+
+\begin_layout Corollary
+\noindent
+לכל 
+\begin_inset Formula $n\geq1$
+\end_inset
+
+, המקדם הראשי של 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $2^{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נוכיח באינדוקציה.
+ 
+\begin_inset Formula $T_{1}\left(t\right)=t$
+\end_inset
+
+ לכן הטענה מתקיימת.
+ נניח שמקדם הראשי של 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $2^{n-1}$
+\end_inset
+
+ ונוכיח שהמקדם הראשי של 
+\begin_inset Formula $T_{n+1}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $2^{n}$
+\end_inset
+
+.
+ מהנוסחא בטענה 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "claim:chebyshev_is_polynomial"
+
+\end_inset
+
+ אנו מקבלים שהמקדם הראשי של 
+\begin_inset Formula $T_{n+1}$
+\end_inset
+
+ הוא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+כפול המקדם הראשי של 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+, כלומר 
+\begin_inset Formula 
+\[
+2\times2^{n-1}=2^{n}=2^{(n+1)-1}
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Definition
+\noindent
+הפולינומים 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ נקרא 
+\series bold
+פולינום צ'בישב מסדר 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+מכאן והלאה נצמצם את הדיון שלנו לקטע 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+, מכיוון שהעיסוק בפולינומי צ'בישב נוח בקטע זה.
+\end_layout
+
+\begin_layout Remarks
+\noindent
+ניתן להעתיק את הקטע 
+\begin_inset Formula $[-1,1]$
+\end_inset
+
+ על כל קטע 
+\begin_inset Formula $[a,b]$
+\end_inset
+
+ בצורה הומאומורפית, על ידי העתקה 
+\begin_inset Formula $\varphi:t\mapsto\frac{b-a}{2}t+\frac{b+a}{2}$
+\end_inset
+
+, ולהרחיב את התוצאות לכל קטע סגור.
+ המרחבים 
+\begin_inset Formula $C[-1,1]$
+\end_inset
+
+ ו
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ איזומורפיים כמרחבים ליניאריים ומטריים )וכנובע מכך גם טופולוגית(.
+ ההעתקה שמראה איזומורפיזם זה היא 
+\begin_inset Formula $\phi\left(x\right)=x\circ\varphi$
+\end_inset
+
+ החד חד ערכית מ-
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+ על 
+\begin_inset Formula $C[-1,1]$
+\end_inset
+
+.
+ העתקה זאת היא העתקה לינארית משמרת נורמה.
+ קל לראות שאם 
+\begin_inset Formula $Y$
+\end_inset
+
+ תת מרחב של
+\begin_inset Formula $C[-1,1]$
+\end_inset
+
+ ו
+\begin_inset Formula $x\in C[-1,1]$
+\end_inset
+
+, אז 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ אם ורק אם 
+\begin_inset Formula $\phi\left(y\right)\in\phi\left(Y\right)$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $\phi\left(x\right)\in C[-1,1]$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $\phi\left(Y\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\noindent
+פולינומי צ'בישב הם עדיין לא מהסוג הרצוי שהוצג בתחילת הפרק, אבל אם ננרמל
+ את המקדם הראשי שלהם, נקבל בדיוק את הרצוי.
+\end_layout
+
+\begin_layout Theorem
+\noindent
+
+\series bold
+- פולינום מתוקן בעל נורמה מינימלית
+\end_layout
+
+\begin_layout Theorem
+\noindent
+הפולינום המתוקן 
+\begin_inset Formula 
+\[
+\hat{T_{n}}\left(t\right)=\frac{1}{2^{n-1}}T_{n}\left(t\right)
+\]
+
+\end_inset
+
+הוא הפולינום המתוקן ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ בעל הנורמה המינימלית ב
+\begin_inset Formula $C\left[-1,1\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+התכונה של להיות פולינום מתוקן ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ בעל נורמה מינימלית שקולה לתכונה ש
+\begin_inset Formula $y\left(t\right)=t^{n}-\hat{T}_{n}$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+, שהוא ממימד 
+\begin_inset Formula $n$
+\end_inset
+
+.
+ ל
+\begin_inset Formula $T_{n}$
+\end_inset
+
+ יש קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+ לכן גם ל
+\begin_inset Formula $\hat{T_{n}}\left(t\right)$
+\end_inset
+
+ יש )כי הוא הכפלה בקבוע של 
+\begin_inset Formula $T_{n}$
+\end_inset
+
+(, כלומר ל
+\begin_inset Formula $t^{n}-y\left(t\right)=\hat{T_{n}}\left(t\right)$
+\end_inset
+
+ יש קבוצה סירוגית באורך 
+\begin_inset Formula $n+1$
+\end_inset
+
+, לכן ממשפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:best_aprox_alter_set"
+
+\end_inset
+
+ אנחנו מקבלים ש
+\begin_inset Formula $y$
+\end_inset
+
+ הוא קירוב טוב ביותר של 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+, כלומר 
+\begin_inset Formula $\hat{T_{n}}$
+\end_inset
+
+ הוא הפולינום המתוקן ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ עם הנורמה המינימלית.
+\end_layout
+
+\begin_layout Standard
+\noindent
+ממשפט זה אנחנו מקבלים את המסקנה הבאה, שהיא המטרה של כל הפרק הזה
+\end_layout
+
+\begin_layout Corollary
+\noindent
+הקירוב הטוב ביותר ב 
+\begin_inset Formula $C[-1,1]$
+\end_inset
+
+ של 
+\begin_inset Formula $t^{n}$
+\end_inset
+
+ בעזרת פולינומים ממעלה נמוכה מ-
+\begin_inset Formula $n$
+\end_inset
+
+ הוא 
+\begin_inset Formula 
+\[
+y(t)=t^{n}-\hat{T}_{n}\left(t\right)=t^{n}-\frac{1}{2^{n-1}}T_{n}\left(t\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+פולינומי צ'בישב מאפשרים לנו לפתור בעיה יותר כללית, של קירוב פולינום כללי
+ ב 
+\begin_inset Formula $Y_{n}$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y_{n-1}$
+\end_inset
+
+.
+ יהי 
+\begin_inset Formula $p\in Y_{n}$
+\end_inset
+
+.
+ נניח 
+\begin_inset Formula $p\not\in Y_{n-1}$
+\end_inset
+
+, אחרת הבעיה לא מעניינת.
+ נסמן ב 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ את המקדם הראשי של 
+\begin_inset Formula $p$
+\end_inset
+
+, 
+\begin_inset Formula $\alpha\neq0$
+\end_inset
+
+.
+ יהי 
+\begin_inset Formula $y\in Y_{n-1}$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ אז 
+\begin_inset Formula $\frac{1}{\alpha}y$
+\end_inset
+
+ קירוב טוב ביותר של 
+\begin_inset Formula $\frac{1}{\alpha}p$
+\end_inset
+
+, אחרת, אם 
+\begin_inset Formula $\hat{y}$
+\end_inset
+
+ הקירוב הטוב ביותר של 
+\begin_inset Formula $\frac{1}{\alpha}p$
+\end_inset
+
+ אז היה מתקיים 
+\begin_inset Formula 
+\[
+\left\Vert p-\alpha\hat{y}\right\Vert =\frac{\left|\alpha\right|}{\left|\alpha\right|}\left\Vert p-\alpha\hat{y}\right\Vert =\left|\alpha\right|\left\Vert \frac{1}{\alpha}p-\hat{y}\right\Vert <\left|\alpha\right|\left\Vert \frac{p}{\alpha}-\frac{1}{\alpha}y\right\Vert =\left\Vert p-y\right\Vert 
+\]
+
+\end_inset
+
+כלומר 
+\begin_inset Formula $y$
+\end_inset
+
+ לא קירוב טוב ביותר של 
+\begin_inset Formula $p$
+\end_inset
+
+.
+ אבל 
+\begin_inset Formula $\frac{1}{\alpha}p$
+\end_inset
+
+ הוא פולינום מתוקן ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+, לכן גם 
+\begin_inset Formula $\frac{1}{\alpha}p-\frac{1}{\alpha}y$
+\end_inset
+
+, אבל פולינום זה הוא מנורמה מינימלית, כלומר מתקיים
+\begin_inset Formula $\frac{1}{\alpha}p-\frac{1}{\alpha}y=\hat{T}_{n}$
+\end_inset
+
+, או 
+\begin_inset Formula 
+\[
+y=p-\alpha\hat{T}_{n}=p-\frac{\alpha}{2^{n-1}}T_{n}
+\]
+
+\end_inset
+
+נעגן זאת במסקנה
+\end_layout
+
+\begin_layout Corollary
+\noindent
+אם 
+\begin_inset Formula $p$
+\end_inset
+
+ פולינום ממעלה 
+\begin_inset Formula $n$
+\end_inset
+
+ עם מקדם ראשי 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ אז הקירוב הטוב ביותר שלו ב 
+\begin_inset Formula $C\left[-1,1\right]$
+\end_inset
+
+ מתוך פולינומים ממעלה נמוכה מ-
+\begin_inset Formula $n$
+\end_inset
+
+ הוא 
+\begin_inset Formula 
+\[
+p-\frac{\alpha}{2^{n-1}}T_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+כעת נותר רק למצוא דרך נוחה לחשב את פולינומי צ'בישב.
+ בעזרת משפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "claim:chebyshev_is_polynomial"
+
+\end_inset
+
+ ותנאי ההתחלה 
+\begin_inset Formula $T_{0}\left(t\right)=1$
+\end_inset
+
+, 
+\begin_inset Formula $T_{1}\left(t\right)=t$
+\end_inset
+
+ ניתן לחשב את כל פולינומי צ'בישב.
+ הפולינומים הראשונים הם
+\begin_inset Formula 
+\begin{alignat*}{1}
+ & T_{0}\left(t\right)=1\\
+ & T_{1}\left(t\right)=t\\
+ & T_{2}\left(t\right)=2t^{2}-1\\
+ & T_{3}\left(t\right)=4t^{3}-3t\\
+ & T_{4}\left(t\right)=8t^{4}-8t^{2}+1\\
+ & T_{5}\left(t\right)=16t^{5}-20t^{3}+5t\\
+ & T_{6}\left(t\right)=32t^{6}-48t^{4}+18t^{2}-1
+\end{alignat*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+והנוסחא הכללית היא
+\begin_inset Formula 
+\[
+T_{n}\left(t\right)=\frac{n}{2}\sum_{j=0}^{\left\lfloor \frac{n}{2}\right\rfloor }\left(-1\right)^{j}\frac{\left(n-j-1\right)!}{j!\left(n-2j\right)!}\left(2t\right)^{n-2j}
+\]
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+פולינומי צ'בישב עד מעלה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+5
+\end_layout
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Chebyshev_Polynomials.eps
+	scale 10
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "mybib"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
