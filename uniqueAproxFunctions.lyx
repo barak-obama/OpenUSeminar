@@ -432,5 +432,344 @@ u_{1}\left(t_{i}\right)=u_{2}\left(t_{i}\right)=\pm\delta
 :
 \end_layout
 
+\begin_layout Proof
+נניח ש-
+\begin_inset Formula $Y$
+\end_inset
+
+ לא מקיים את תנאי האר, ונוכיח שקיים 
+\begin_inset Formula $x\in C\left[a,b\right]$
+\end_inset
+
+ כך שקיימים אינסוף קירובים טובים ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula $Y$
+\end_inset
+
+ לא מקיים את תנאי האר לכן, לפי משפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "commentHarrcondition"
+
+\end_inset
+
+ קיימים 
+\begin_inset Formula $t_{1},\ldots,t_{n}\in\left[a,b\right]$
+\end_inset
+
+ ובסיס 
+\begin_inset Formula $\left\{ y_{1},\ldots,y_{n}\right\} $
+\end_inset
+
+ כך שקיימים 
+\begin_inset Formula $\alpha_{1},\ldots,\alpha_{n}$
+\end_inset
+
+ לא כולם אפס כך שלכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\alpha_{i}y_{i}\left(t_{k}\right)=0
+\]
+
+\end_inset
+
+בנוסף, לפי אותה הערה קיימים 
+\begin_inset Formula $\beta_{1},\ldots\beta_{n}$
+\end_inset
+
+ לא כולם אפס כך שלכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\beta_{i}y_{k}\left(t_{i}\right)=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+נסמן 
+\begin_inset Formula $\hat{y}=\sum_{i=1}^{n}\alpha_{i}y_{i}$
+\end_inset
+
+.
+ לא כל ה 
+\begin_inset Formula $\alpha_{i}$
+\end_inset
+
+ הם אפסים לכן 
+\begin_inset Formula $y$
+\end_inset
+
+ היא לא פונקציית האפס.
+ מהגדרת 
+\begin_inset Formula $\left\{ \alpha_{i}\right\} _{i=1}^{n}$
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $y(t_{k})=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+תיהי 
+\begin_inset Formula $z\left(t\right)\in C\left[a,b\right]$
+\end_inset
+
+ פונקציה רציפה המקיימת 
+\begin_inset Formula 
+\[
+\left\Vert z\right\Vert =1,\qquad z\left(t\right)=\text{sgn}\left(\beta_{i}\right)=\begin{cases}
+1 & \beta_{i}\geq0\\
+-1 & \beta_{i}<0
+\end{cases}
+\]
+
+\end_inset
+
+ואכן קיימת כזאת )לדוגמא האיטרפולציה הלינארית המתאימה(.
+\end_layout
+
+\begin_layout Proof
+ניקח 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $\left\Vert \lambda\hat{y}\right\Vert \leq1$
+\end_inset
+
+ )קיים כזה, מהומגניות הנורמה( ונגדיר את הפונקציה הרציפה
+\begin_inset Formula 
+\[
+x\left(t\right)=z\left(t\right)\left(1-\left|\lambda\hat{y}\left(t\right)\right|\right)
+\]
+
+\end_inset
+
+נוכיח תחילה ש
+\begin_inset Formula $\delta\left(x,Y\right)\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+נשים לב שלכל 
+\begin_inset Formula $1\leq i\leq n$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+x\left(t_{i}\right)=z\left(t_{i}\right)\left(1-\left|\lambda\hat{y}\left(t_{i}\right)\right|\right)=\text{sgn}\left(\beta_{i}\right)\left(1-0\right)=\text{sgn}\left(\beta_{i}\right)
+\]
+
+\end_inset
+
+ יהי 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+.
+ נניח ש מתקיים 
+\begin_inset Formula $\left\Vert x-y\right\Vert <1$
+\end_inset
+
+ לכן לכל 
+\begin_inset Formula $1\leq i\leq n$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula 
+\begin{equation}
+\left|x\left(t_{i}\right)-y\left(t_{i}\right)\right|\leq\left\Vert x\left(t_{i}\right)-y\left(t_{i}\right)\right\Vert <1\label{eq:lessThen1}
+\end{equation}
+
+\end_inset
+
+ לכן ל 
+\begin_inset Formula $x\left(t_{i}\right)=\text{sgn}\left(\beta_{i}\right)$
+\end_inset
+
+ ול 
+\begin_inset Formula $y\left(t_{i}\right)$
+\end_inset
+
+ יש אותו סימן.
+ נכתוב את 
+\begin_inset Formula $y$
+\end_inset
+
+ כצירוף לינארי של איברי הבסיס של 
+\begin_inset Formula $Y$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+y=\sum_{i=1}^{n}a_{i}y_{i}
+\]
+
+\end_inset
+
+אנחנו מקבלים
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\beta_{i}y\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\sum_{k=1}^{n}a_{k}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}a_{k}\sum_{i=1}^{n}\beta_{i}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}a_{k}\times0=0
+\]
+
+\end_inset
+
+אנחנו יודעים שלכל 
+\begin_inset Formula $1\leq i\leq n$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\left|x\left(t_{i}\right)\right|=1$
+\end_inset
+
+, לכן לא ייתכן ש 
+\begin_inset Formula $y\left(t_{i}\right)=0$
+\end_inset
+
+, מכיוון שאז נקבל 
+\begin_inset Formula $\left|x\left(t_{i}\right)-y\left(t_{i}\right)\right|=\left|x\left(t_{i}\right)\right|=1$
+\end_inset
+
+, בסתירה לנוסחא 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:lessThen1"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Proof
+בנוסף, אנחנו יודעים שקיים 
+\begin_inset Formula $1\leq j\leq n$
+\end_inset
+
+ כך ש 
+\begin_inset Formula $\beta_{j}\neq0$
+\end_inset
+
+.
+ מכאן אנחנו מקבלים ש
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\beta_{i}y\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\left|y\left(t_{i}\right)\right|\text{sgn}\left(y\left(t_{i}\right)\right)=\sum_{i=1}^{n}\beta_{i}\left|y\left(t_{i}\right)\right|\text{sgn}\left(\beta_{i}\right)=\sum_{i=1}^{n}\left|\beta_{i}\right|\left|y\left(t_{i}\right)\right|\neq0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+וזוהי סתירה להנחה ש 
+\begin_inset Formula $\left\Vert x-y\right\Vert <1$
+\end_inset
+
+ לכן לכל 
+\begin_inset Formula $y\in Y$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $\left\Vert x-y\right\Vert \geq1$
+\end_inset
+
+, או, במילים אחרות, 
+\begin_inset Formula $\delta\left(x,Y\right)\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+יהי , אז לכל 
+\begin_inset Formula $t\in\left[a,b\right]$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\begin{align*}
+\left|x\left(t\right)-\epsilon\lambda\hat{y}\left(t\right)\right| & \leq\left|x\left(t\right)\right|+\left|\epsilon\lambda\hat{y}\left(t\right)\right|\\
+ & =\left|z\left(t\right)\right|\left(1-\left|\lambda\hat{y}\left(t\right)\right|\right)+\left|\epsilon\right|\left|\lambda\hat{y}\left(t\right)\right|\\
+ & \leq1-\left|\lambda\hat{y}\left(t\right)\right|+\left|\epsilon\right|\left|\lambda\hat{y}\left(t\right)\right|\\
+ & \leq1-\left(1-\left|\epsilon\right|\right)\left|\lambda\hat{y}\left(t\right)\right|\\
+ & \leq1
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+כלומר 
+\begin_inset Formula $\left\Vert x\left(t\right)-\epsilon\lambda\hat{y}\left(t\right)\right\Vert \leq1$
+\end_inset
+
+.
+ אבל 
+\begin_inset Formula $\delta\left(x,Y\right)\geq1$
+\end_inset
+
+, לכן 
+\begin_inset Formula $\delta\left(x,Y\right)=1$
+\end_inset
+
+ ו
+\begin_inset Formula $\left\Vert x\left(t\right)-\epsilon\lambda\hat{y}\left(t\right)\right\Vert =1=\delta\left(x,Y\right)$
+\end_inset
+
+, כלומר לכל 
+\begin_inset Formula $\epsilon\in\left[-1,1\right]$
+\end_inset
+
+ 
+\begin_inset Formula $\epsilon\lambda\hat{y}\left(t\right)$
+\end_inset
+
+ הוא קירוב טוב ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ והם כולם שונים, בפרט הקירוב הטוב ביותר לא יחיד.
+\end_layout
+
 \end_body
 \end_document
