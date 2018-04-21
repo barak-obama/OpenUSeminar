@@ -2845,15 +2845,699 @@ reference "lem:aprox_extream_point"
 .
 \end_layout
 
+\begin_layout Theorem
+\noindent
+
+\series bold
+- משפט היחידות במרחב פונקציות רציפות
+\end_layout
+
 \begin_layout Standard
 \noindent
-\begin_inset CommandInset include
-LatexCommand input
-filename "uniqueAproxFunctions.lyx"
+יהי 
+\begin_inset Formula $Y$
+\end_inset
+
+ הוא תת מרחב ממימד סופי של 
+\begin_inset Formula $C[a,b]$
+\end_inset
+
+.
+ אז שני התנאים הבאים שקולים:
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר.
+\end_layout
+
+\begin_layout Enumerate
+\noindent
+לכל 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+, הקירוב הטוב ביותר שלו מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ הוא יחיד.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נסמן 
+\begin_inset Formula $n=\dim Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+
+\series bold
+\numeric on
+1
+\family roman
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+
+\family roman
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+: 
+\series default
+יהיה 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+.
+ נניח ש
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר וש
+\begin_inset Formula $y_{1},y_{2}\in Y$
+\end_inset
+
+ הם קירובים טובים ביותר של
+\begin_inset Formula $x$
+\end_inset
+
+ מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+ )לפי משפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "thm:best_aprox_existence"
+
+\end_inset
+
+ אכן קיים קירוב טוב ביותר(.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נגדיר 
+\begin_inset Formula $u_{1}=y_{1}-x$
+\end_inset
+
+ ו 
+\begin_inset Formula $u_{2}=y_{2}-x$
+\end_inset
+
+.
+ מתקיים 
+\begin_inset Formula 
+\[
+\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =d\left(x,Y\right)=\delta
+\]
 
 \end_inset
 
 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ ו 
+\begin_inset Formula $y_{2}$
+\end_inset
+
+ הם קירובים טובים ביותר של 
+\begin_inset Formula $x$
+\end_inset
+
+, לכן, לפי 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "claim:best_aprox_convex"
+
+\end_inset
+
+, גם 
+\begin_inset Formula $\frac{y_{1}+y_{2}}{2}$
+\end_inset
+
+ הוא קירוב טוב ביותר, לכן אם נגדיר 
+\lang english
+
+\begin_inset Formula 
+\begin{equation}
+u=x-\frac{y_{1}+y_{2}}{2}=\frac{x-y_{1}+x-y_{2}}{2}=\frac{u_{1}+u_{2}}{2}\label{eq:aprox_C_unique_1}
+\end{equation}
+
+\end_inset
+
+
+\lang hebrew
+נקבל 
+\begin_inset Formula 
+\[
+\left\Vert u\right\Vert =\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =\delta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+לפי למה 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:aprox_extream_point"
+
+\end_inset
+
+ נקבל של
+\begin_inset Formula $u$
+\end_inset
+
+ יש לפחות 
+\begin_inset Formula $n+1$
+\end_inset
+
+ נקודות קיצון, נסמנן 
+\begin_inset Formula $t_{1}\ldots t_{n+1}$
+\end_inset
+
+.
+ כלומר לכל 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ חייב להתקיים 
+\begin_inset Formula 
+\[
+\left|u\left(t_{i}\right)\right|=\left\Vert u\right\Vert =\delta
+\]
+
+\end_inset
+
+מכאן ומ-
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:aprox_C_unique_1"
+
+\end_inset
+
+ נקבל 
+\begin_inset Formula 
+\[
+2\delta=\left|2u\left(t_{i}\right)\right|=\left|u_{1}\left(t_{i}\right)+u_{2}\left(t_{i}\right)\right|
+\]
+
+\end_inset
+
+אבל אנחנו יודעים ש
+\begin_inset Formula $\left\Vert u_{1}\right\Vert =\left\Vert u_{2}\right\Vert =\delta$
+\end_inset
+
+ כלומר לכל 
+\begin_inset Formula $t\in\left[a,b\right]$
+\end_inset
+
+ מתקיים
+\begin_inset Formula 
+\[
+\left|u_{1}\left(t\right)\right|,\left|u_{2}\left(t\right)\right|\leq\delta
+\]
+
+\end_inset
+
+לכן בנקודות 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ חייב להתקיים 
+\begin_inset Formula 
+\[
+u_{1}\left(t_{i}\right)=u_{2}\left(t_{i}\right)=\pm\delta
+\]
+
+\end_inset
+
+מכאן אנחנו מקבלים שלפונקציה 
+\begin_inset Formula $\widetilde{u}=u_{1}-u_{2}=y_{1}-y_{2}$
+\end_inset
+
+ יש לפחות 
+\begin_inset Formula $n+1$
+\end_inset
+
+ אפסים )כל 
+\begin_inset Formula $t_{i}$
+\end_inset
+
+ הוא אפס של 
+\begin_inset Formula $\widetilde{u}$
+\end_inset
+
+(, אבל 
+\begin_inset Formula $Y$
+\end_inset
+
+ מקיים את תנאי האר, לכן 
+\begin_inset Formula $\widetilde{u}=0$
+\end_inset
+
+ כלומר 
+\begin_inset Formula $y_{1}=y_{2}$
+\end_inset
+
+, מכאן היחידות.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+
+\series bold
+\numeric on
+2
+\family roman
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $\Leftarrow$
+\end_inset
+
+
+\family default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ 
+\numeric on
+1
+\numeric off
+: 
+\series default
+נניח ש
+\begin_inset Formula $Y$
+\end_inset
+
+ לא מקיים את תנאי האר, ונוכיח שקיים 
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+ כך שיש לו מספר קירובים טובים ביותר מתוך 
+\begin_inset Formula $Y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נציין תחילה ש
+\begin_inset Formula $Y$
+\end_inset
+
+ לא מקיים את תנאי האר, לכן לפי משפט 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "lem:harr"
+
+\end_inset
+
+ קיימים 
+\begin_inset Formula $t_{1}\ldots t_{n}\in[a,b]$
+\end_inset
+
+ שונים ובסיס 
+\begin_inset Formula $y_{1}\ldots y_{n}$
+\end_inset
+
+ כך שקיים צירוף לינארי לא טריוואלי
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\alpha_{i}y_{i}(t_{k})=0
+\]
+
+\end_inset
+
+ לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+, נסמן 
+\begin_inset Formula $y=\sum_{i=1}^{n}\alpha_{i}y_{i}$
+\end_inset
+
+.
+ בנוסף, לפי הערה 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "commentHarrcondition"
+
+\end_inset
+
+ קיימים 
+\begin_inset Formula $\beta_{1}\ldots\beta_{n}$
+\end_inset
+
+ לא טריוויאלים כך ש
+\begin_inset Formula 
+\begin{equation}
+\sum_{i=1}^{n}\beta_{i}y_{k}(t_{i})=0\label{eq:non_haar_2}
+\end{equation}
+
+\end_inset
+
+לכל 
+\begin_inset Formula $1\leq k\leq n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+יהיה 
+\begin_inset Formula $z\in C[a,b]$
+\end_inset
+
+ המקיימת
+\begin_inset Formula 
+\[
+\left\Vert z\right\Vert =1\quad,\quad z(t_{i})=sgn(\beta_{i})=\begin{cases}
+1 & \beta_{i}\geq0\\
+-1 & \beta_{i}\leq0
+\end{cases}
+\]
+
+\end_inset
+
+קיימת 
+\begin_inset Formula $z$
+\end_inset
+
+ כזאת )לדוגמא האינטרפולציה הלינארית המתאימה(.
+\end_layout
+
+\begin_layout Proof
+\noindent
+יהי גם 
+\begin_inset Formula $\lambda>0$
+\end_inset
+
+ קטן כך ש 
+\begin_inset Formula $\norm{\lambda y}\leq1$
+\end_inset
+
+ )קיים כזה, מתכונות הנורמה(.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נגדיר 
+\begin_inset Formula 
+\[
+x(t):=z(t)\left(1-\abs{\lambda y(t)}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Formula $x\in C[a,b]$
+\end_inset
+
+, כחיבור וכפל של פונקציות רציפות.
+ מתקיים
+\begin_inset Formula 
+\[
+x\left(t_{i}\right)=z\left(t_{i}\right)\left(1-\left|\lambda y\left(t_{i}\right)\right|\right)=z\left(t_{i}\right)\left(1-0\right)=sgn(\beta_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+\noindent
+בנוסך לכל 
+\begin_inset Formula $t\in[a,b]$
+\end_inset
+
+ מתקיים 
+\begin_inset Formula $0\leq1-\abs{\lambda y(t)}\leq1$
+\end_inset
+
+ לכן 
+\begin_inset Formula 
+\[
+\abs{x\left(t\right)}=\abs{z\left(t\right)}\abs{1-\abs{\lambda(t)}}\leq\abs{1-\abs{\lambda(t)}}\leq1
+\]
+
+\end_inset
+
+ כלומר 
+\begin_inset Formula $\left\Vert x\right\Vert \leq1$
+\end_inset
+
+.
+ יחד עם הנוסחא הקודמת נקבל 
+\begin_inset Formula $\left\Vert x\right\Vert =1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+נוכיח תחילה ש
+\begin_inset Formula $\delta:=d(x,Y)\geq1$
+\end_inset
+
+.
+ נניח שקיימת 
+\begin_inset Formula $\hat{y}=\sum_{i=0}^{n}a_{i}y_{i}$
+\end_inset
+
+ כך ש
+\begin_inset Formula $\norm{x-\hat{y}}<1$
+\end_inset
+
+.
+ מתקיים 
+\begin_inset Formula $x\left(t_{i}\right)=sgn\beta_{i}=\pm1$
+\end_inset
+
+ לכן 
+\begin_inset Formula 
+\[
+\abs{x\left(t_{i}\right)-\hat{y}\left(t_{i}\right)}\leq\norm{x-\hat{y}}<1
+\]
+
+\end_inset
+
+כלומר אם 
+\begin_inset Formula $\beta_{i}\neq0$
+\end_inset
+
+ , 
+\begin_inset Formula $y\left(t_{i}\right)$
+\end_inset
+
+ לא יכול להחליף את הסימן של 
+\begin_inset Formula $x\left(t_{i}\right)-\hat{y}\left(t_{i}\right)$
+\end_inset
+
+ מהסימן של 
+\begin_inset Formula $x\left(t_{i}\right)$
+\end_inset
+
+, כלומר
+\begin_inset Formula 
+\[
+sgn\text{ }\hat{y}(t_{i})=sgn\beta_{i}
+\]
+
+\end_inset
+
+כלומר מתקיים 
+\begin_inset Formula $\hat{y}(t_{i})=\abs{\hat{y}(t_{i})}sgn\beta_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+לפי נוסחא )
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:non_haar_2"
+
+\end_inset
+
+( אנחנו מקבלים
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\beta_{i}\hat{y}\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\sum_{k=1}^{n}a_{k}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}\alpha_{k}\sum_{i=1}^{n}\beta_{i}y_{k}\left(t_{i}\right)=\sum_{k=1}^{n}\alpha_{k}\times0=0
+\]
+
+\end_inset
+
+אבל 
+\begin_inset Formula $\beta_{1}\ldots\beta_{n}$
+\end_inset
+
+ הם לא טריוויאלים לכן לפחות אחד מהם שונה מ-
+\numeric on
+0
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+לכן
+\begin_inset Formula 
+\[
+\sum_{i=1}^{n}\beta_{i}\hat{y}\left(t_{i}\right)=\sum_{i=1}^{n}\beta_{i}\abs{\hat{y}(t_{i})}sgn\beta_{i}=\sum_{i=1}^{n}\abs{\beta_{i}}\abs{\hat{y}(t_{i})}\neq0
+\]
+
+\end_inset
+
+כלומר 
+\begin_inset Formula $\delta\geq1$
+\end_inset
+
+.
+ נראה שקיימים אינסוף קירובים טובים ביותר ל
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Proof
+\noindent
+יהי 
+\begin_inset Formula $\epsilon\in[-1,1]$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\abs{x(t)-\epsilon\lambda y(t)} & \leq\abs{x(t)}+\abs{\epsilon\lambda y(t)}\\
+ & =\abs{z(t)}\left(1-\abs{\lambda y(t)}\right)+\abs{\epsilon\lambda y(t)}\\
+ & \leq1-\abs{\lambda y(t)}+\abs{\epsilon\lambda y(t)}\\
+ & =1-\left(1-\abs{\epsilon}\right)\abs{\lambda y_{0}\left(t\right)}\\
+ & \leq1
+\end{align*}
+
+\end_inset
+
+כלומר 
+\begin_inset Formula $\norm{x(t)-\epsilon\lambda y(t)}\leq1$
+\end_inset
+
+.
+ לכן 
+\begin_inset Formula $\norm{x(t)-\epsilon\lambda y(t)}=1$
+\end_inset
+
+.
+ כלומר לכל 
+\begin_inset Formula $\epsilon\in[-1,1]$
+\end_inset
+
+ קיים קירוב טוב ביותר שונה )כי הם נפרדים בהכפלה בקבוע ו
+\begin_inset Formula $y\not\equiv0$
+\end_inset
+
+(, ובפרט הקירוב לא יחיד.
+ 
 \end_layout
 
 \begin_layout Section
