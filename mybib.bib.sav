@@ -1,0 +1,25 @@
+% Encoding: UTF-8
+
+
+
+
+@book{kreyszig1989introductory,
+	Author = {Kreyszig, Erwin},
+	Date-Modified = {2018-04-20 11:50:29 +0000},
+	Publisher = {wiley New York},
+	Title = {Introductory functional analysis with applications},
+	Year = {1989}}
+
+@book{functionalAnalysisOpenUheb,
+	Date-Modified = {2018-04-20 11:47:44 +0000},
+	Publisher = {��� ������ ���� �� ����������� ������},
+	Title = {���� ������� ����������},
+	Year = {9002}}
+
+@book{odeOpenUheb,
+	Date-Modified = {2018-04-20 11:48:38 +0000},
+	Publisher = {��� ������ ���� �� ����������� ������},
+	Title = {������� ������������ ������},
+	Year = {5002}}
+
+@Comment{jabref-meta: databaseType:biblatex;}
