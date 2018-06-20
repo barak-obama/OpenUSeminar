@@ -84,11 +84,69 @@
 \begin_body
 
 \begin_layout Title
+\paragraph_spacing onehalf
+האוניברסיטה הפתוחה
+\begin_inset Newline newline
+\end_inset
+
+המחלקה למתמטיקה ולמדעי המחשב
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Formula $\text{}$
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+עבודת סמינריון בנושא
+\size giant
+
+\begin_inset Newline newline
+\end_inset
+
 תורת הקירובים במרחבים נורמיים
 \end_layout
 
 \begin_layout Author
 ברק אוחנה
+\end_layout
+
+\begin_layout Standard
+\align center
+העבודה הוכנה בהדרכת ד"ר ודים גרינשטיין
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+thispagestyle{empty}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -121,7 +179,7 @@ LatexCommand tableofcontents
 
  הנועד לקרב את הפונקציה המיועדת.
  פיתוחי טיילור נוחים מאוד, בהיותם קלים לפיתוח, ובזכות העובדה שניתן להעריך
- את השיגאה שלהם מהפונקציה, אך אם נגביל את את מעלת הפולינומים איתם אנו עובדים,
+ את השגיאה שלהם מהפונקציה, אך אם נגביל את את מעלת הפולינומים איתם אנו עובדים,
  ייתכן ונמצא פולינומים שיותר מתאימים למטרה.
  בעבודה נעסוק בקירובים של פולינומים בעזרת פולינומים אחרים, ממעלה נמוכה יותר,
  ונמצא את הקירוב הטוב ביותר האפשרי שלהם )תחת נורמת המקסימום(.
@@ -205,7 +263,7 @@ key "kreyszig1989introductory"
 
 \end_inset
 
-(, וממשיכה הנושאים בהם עסקו ספרי הקורס "מבוא לאנליזה פונקציונלית" באוניברסיטה
+(, וממשיכה את הנושאים בהם עסקו ספרי הקורס "מבוא לאנליזה פונקציונלית" באוניברסיטה
  הפתוחה )
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -236,7 +294,7 @@ key "functionalAnalysisOpenUheb"
 \begin_inset Formula $\left[a,b\right]$
 \end_inset
 
-, יחד על נורמת המקסימום.
+, יחד עם נורמת המקסימום.
  זהו מרחב ממשי.
  המשתנה של פונקציות אלו הוא 
 \begin_inset Formula $t$
@@ -309,7 +367,7 @@ name "sec:bestAprox"
 \begin_inset Formula $x\in X$
 \end_inset
 
- אנו מעוניינים לדעת כמה "טוב" אפשר לקרב 
+ אנו מעוניינים לדעת כמה "טוב" אפשר לקרב את 
 \begin_inset Formula $x$
 \end_inset
 
@@ -334,7 +392,7 @@ name "sec:bestAprox"
 
 \end_inset
 
-מהגדרת האינפמום נובע שלכל 
+מהגדרת האינפימום נובע שלכל 
 \begin_inset Formula $d>d(x,Y)$
 \end_inset
 
@@ -406,7 +464,7 @@ key "functionalAnalysisOpenUheb"
 \begin_inset Formula $x\in E$
 \end_inset
 
- הקירוב הטוב יותר, אם קיים, הוא יחיד, ולפי 
+ הקירוב הטוב ביותר, אם קיים, הוא יחיד, ולפי 
 \begin_inset CommandInset citation
 LatexCommand cite
 after "משפט 51.1"
@@ -431,18 +489,18 @@ key "functionalAnalysisOpenUheb"
 \begin_inset Formula $E$
 \end_inset
 
- הוא מרחב הילברט, ו
+ הוא מרחב הילברט, ו-
 \begin_inset Formula $Y$
 \end_inset
 
- הוא, במקום תת מרחב, קבוצה קמורה וסגורה, אז גם אז הקירוב הטוב ביותר קיים.
+ הוא, במקום תת מרחב, תת קבוצה קמורה וסגורה, אז גם אז הקירוב הטוב ביותר קיים.
 \end_layout
 
 \begin_layout Theorem
 \noindent
 
 \series bold
-יחידות וקיום קירוב טוב יותר במרחב הילברט
+- קיום ויחידות קירוב טוב ביותר במרחב הילברט
 \end_layout
 
 \begin_layout Theorem
@@ -626,7 +684,7 @@ name "sec:existence"
 \begin_inset Formula $Y$
 \end_inset
 
- שאיתו נרצה לקרב יהיה ממימד סופי, במקרה פשוט יחסית זה, יש לנו את המשפט הבא
+ שאיתו נרצה לקרב יהיה ממימד סופי, במקרה פשוט יחסית זה, מתקיים המשפט הבא
 \end_layout
 
 \begin_layout Theorem
@@ -640,7 +698,9 @@ name "thm:best_aprox_existence"
 
 \end_inset
 
- - קיום קירוב טוב ביותר
+ - 
+\size default
+קיום קירוב טוב ביותר במרחבים נורמיים
 \end_layout
 
 \begin_layout Theorem
@@ -649,11 +709,11 @@ name "thm:best_aprox_existence"
 \begin_inset Formula $X$
 \end_inset
 
- מרחב נורמי ו 
+ מרחב נורמי ו-
 \begin_inset Formula $Y$
 \end_inset
 
- תת מרחב ממימד סופי שלו.
+ תת מרחב ממימד סופי.
  במקרה זה, לכל 
 \begin_inset Formula $x\in X$
 \end_inset
@@ -730,7 +790,7 @@ d(x,B)=\underset{y\in B}{\inf}\Vert x-y\Vert\leq\Vert x-0\Vert=\Vert x\Vert
 
 \begin_layout Proof
 \noindent
-מצד שני, אם 
+מעבר לזאת, אם 
 \begin_inset Formula $y\not\in B$
 \end_inset
 
@@ -947,7 +1007,7 @@ name "sec:uniqu"
 
 \begin_layout Standard
 \noindent
-בצורה טבעית עולה השאלה האם הקירוב הטוב ביותר הוא יחד.
+בצורה טבעית עולה השאלה האם הקירוב הטוב ביותר הוא יחיד.
  בצורה כללית, התשובה היא שלילית, ראו 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -975,8 +1035,8 @@ name "claim:best_aprox_convex"
 \begin_inset Formula $x\in X$
 \end_inset
 
-, 
-\begin_inset Formula $Y\subseteq X$
+ ו-
+\begin_inset Formula $Y$
 \end_inset
 
  תת מרחב של 
@@ -1151,7 +1211,7 @@ name "claim:best_aprox_convex"
 \begin_inset Formula $M$
 \end_inset
 
- היא קבוצת הקירוב הטובים ביותר של 
+ היא קבוצת הקירובים הטובים ביותר של 
 \begin_inset Formula $x$
 \end_inset
 
@@ -1213,15 +1273,6 @@ reference "claim:best_aprox_convex"
 
 \begin_layout Standard
 \noindent
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-יש לבדוק אם הניסוח ברור
-\end_layout
-
-\end_inset
-
 ההגדרה הבאה היא ניסוח שקול ונוח יותר לכך שספירת היחידה לא תכיל אף קטע.
 \end_layout
 
@@ -1266,8 +1317,9 @@ status open
 
 .
  במרחב קמור לחלוטין לא ייתכן שוויון.
- קל לבדוק שתנאי הקמירות לחלוטין שקול לכך שספירת היחידה לא מכילה אף קטע )ההוכחה
- דומה להוכחת הכיוון שני של משפט 
+ קל לבדוק שתנאי הקמירות לחלוטין שקול לכך שספירת היחידה לא מכילה אף קטע )כיוון
+ אחד טריוויאלי.
+ את הכיוון השני נוכיח במהלך הוכחת הכיוון השני של משפט 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "thm:striclyConvex"
@@ -1374,7 +1426,16 @@ status open
 \begin_inset Newline newline
 \end_inset
 
-יהי 
+יהיו 
+\begin_inset Formula $x,y\in X$
+\end_inset
+
+ שונים המקיימים 
+\begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
+\end_inset
+
+.
+ יהי 
 \begin_inset Formula $0<t<1$
 \end_inset
 
@@ -1460,16 +1521,16 @@ status open
 \begin_inset Formula $\left\Vert x\right\Vert =\left\Vert y\right\Vert =1$
 \end_inset
 
-.
- 
+ המעידים על אי הקמירות לחלוטין של 
 \begin_inset Formula $X$
 \end_inset
 
- לא קמור לחלוטין לכן קיים 
+.
+ כלומר כך שקיים 
 \begin_inset Formula $z\in(x,y)=\{tx+(1-t)y:0<t<1\}$
 \end_inset
 
- כך ש
+ כך ש 
 \begin_inset Formula $\Vert z\Vert=1$
 \end_inset
 
@@ -1678,7 +1739,7 @@ status open
 
 \begin_layout Proof
 \noindent
-לפי אי שוויון המקבילית 
+לפי אי שוויון המקבילית )
 \begin_inset CommandInset citation
 LatexCommand cite
 after "פרק 4.1 נוסחא 3"
@@ -1686,8 +1747,12 @@ key "functionalAnalysisOpenUheb"
 
 \end_inset
 
- לכל 
-\begin_inset Formula $x\neq y$
+( לכל שני ווקטורים 
+\begin_inset Formula $x,y$
+\end_inset
+
+ שונים ב-
+\begin_inset Formula $X$
 \end_inset
 
  מנורמה 
@@ -1774,7 +1839,7 @@ y_{1}(x)=1\quad\quad y_{2}(x)=\frac{x-a}{b-a}
 \begin_inset Formula $y_{1}\neq y_{2}$
 \end_inset
 
- וגם מתקיים )מכיוון ש
+ וגם מתקיים )מכיוון ש 
 \begin_inset Formula $y_{2}$
 \end_inset
 
@@ -1790,12 +1855,13 @@ y_{1}(x)=1\quad\quad y_{2}(x)=\frac{x-a}{b-a}
 \begin_inset Formula $C[a,b]$
 \end_inset
 
- לא כמור לחלוטין.
+ לא קמור לחלוטין.
 \end_layout
 
 \begin_layout Standard
 \noindent
-מכאן נובע שבמרחב הילברט הקירוב הטוב היותר הוא יחיד, כמו שהוזכר בפרק
+מכאן נובע שבמרחב הילברט הקירוב הטוב ביותר הוא יחיד.
+ כמו שהוזכר בפרק
 \family roman
 \series medium
 \shape up
@@ -2248,7 +2314,7 @@ y_{n}(t_{1}) & y_{n}(t_{2}) & \ldots & y_{n}(t_{n})
 \begin_inset Formula $[a,b]$
 \end_inset
 
- הדטרמיננטה הרצויה מתאפסת, ובכך הוכחנו את הכיוון השני של המפשט.
+ הדטרמיננטה הרצויה מתאפסת, ובכך הוכחנו את הכיוון השני של המשפט.
 \end_layout
 
 \begin_layout Remarks
@@ -2350,7 +2416,7 @@ name "commentHarrcondition"
 
  תיקראה 
 \series bold
-נקדות קיצון
+נקודת קיצון
 \series default
  של 
 \begin_inset Formula $x$
@@ -2622,7 +2688,7 @@ reference "eq:4.1"
 \end_inset
 
  )
-\begin_inset Formula $i=1,\ldots m$
+\begin_inset Formula $i=1,\ldots,m$
 \end_inset
 
 ( קיימים 
@@ -3407,7 +3473,7 @@ x\left(t_{i}\right)=z\left(t_{i}\right)\left(1-\left|\lambda\hat{y}\left(t_{i}\r
 \end_inset
 
 .
- נניח ש מתקיים 
+ נניח שמתקיים 
 \begin_inset Formula $\left\Vert x-y\right\Vert <1$
 \end_inset
 
@@ -3470,8 +3536,13 @@ reference "eq:lessThen1"
 
 \end_inset
 
-(, מאותם שיקולים אנחנו מקבלים 
-\begin_inset Formula $\text{sgn}\left(y\left(t_{i}\right)\right)=x\left(t_{i}\right)=\text{sgn}\left(\beta_{i}\right)$
+(.
+ מאותם שיקולים אנחנו מקבלים 
+\begin_inset Formula $\text{sgn}\left(y\left(t_{i}\right)\right)=x\left(t_{i}\right)$
+\end_inset
+
+, לכן 
+\begin_inset Formula $\text{sgn}\left(y\left(t_{i}\right)\right)=\text{sgn}\left(\beta_{i}\right)$
 \end_inset
 
 .
@@ -3836,7 +3907,7 @@ reference "thm:unique_in_C"
 \end_inset
 
 (.
- נניח ש-
+ נניח בשלילה ש-
 \begin_inset Formula $y$
 \end_inset
 
@@ -3920,7 +3991,8 @@ u=x-y\quad u_{0}=x-y_{0}
 \begin_inset Formula $y=y_{0}$
 \end_inset
 
-, בסתירה להנחה השלילה.לכן 
+, בסתירה להנחה השלילה.
+ לכן 
 \begin_inset Formula $y$
 \end_inset
 
@@ -4030,7 +4102,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4111,7 +4183,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4199,7 +4271,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4286,6 +4358,9 @@ end{tikzpicture}
 \end_inset
 
 
+\size footnotesize
+\lang hebrew
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -4361,7 +4436,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4449,7 +4524,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4544,7 +4619,7 @@ subfigure{
 
         
 \backslash
-begin{tikzpicture}[yscale=0.86]
+begin{tikzpicture}[yscale=0.7,xscale=0.9]
 \end_layout
 
 \begin_layout Plain Layout
@@ -4637,6 +4712,8 @@ end{tikzpicture}
 
 \end_inset
 
+
+\lang hebrew
 
 \begin_inset Caption Standard
 
@@ -4845,11 +4922,6 @@ T_{n+1}\left(t\right)+T_{n-1}\left(t\right)=2\cos n\theta\cos\theta=2\cos\theta 
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Proof
-\noindent
 נוכיח באינדוקציה ש
 \begin_inset Formula $T_{n}$
 \end_inset
@@ -5059,7 +5131,11 @@ reference "claim:chebyshev_is_polynomial"
 
 \end_inset
 
-.
+
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Definition
@@ -5501,6 +5577,13 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Graphics
+	filename Chebyshev_Polynomials.eps
+	scale 10
+
+\end_inset
+
+
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
@@ -5535,13 +5618,6 @@ status open
 \end_inset
 
 
-\begin_inset Graphics
-	filename Chebyshev_Polynomials.eps
-	scale 10
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -5551,7 +5627,7 @@ status open
 
 \begin_layout Standard
 מסתבר שחשיבותם של פולינומי צ'בישב לא מסתיימת במציאת קירובים של פולינומים,
- ושיש להם חשיבות רבה בנושא האנליזה הפונקציונלית - נמנה מספר מהן.
+ ושיש להם חשיבות רבה בנושא האנליזה הפונקציונלית.
 \end_layout
 
 \begin_layout Standard
@@ -5596,7 +5672,7 @@ status open
 \begin_inset Formula $T_{n}$
 \end_inset
 
- ייקבלו את הצורה 
+ ייקבל את הצורה 
 \begin_inset Formula $T_{n}\left(t\right)=\cos\left(n\arccos t\right)$
 \end_inset
 
@@ -5687,6 +5763,10 @@ t_{k}=\cos\left(\frac{\pi}{2n}+\frac{\pi}{n}k\right)\in\left[-1,1\right]
 \end_inset
 
  אין שורשים משותפים.
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -5811,8 +5891,7 @@ t_{1}=\cos\left(\theta_{1}\right)\qquad t_{2}=\cos\left(\theta_{2}\right)
 \begin_inset Formula $\theta_{1}<\theta'_{m}<\theta_{2}$
 \end_inset
 
-.
- כלומר 
+, כלומר 
 \begin_inset Formula $t_{2}<t'_{m}<t_{1}$
 \end_inset
 
